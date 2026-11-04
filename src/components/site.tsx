@@ -1,0 +1,147 @@
+import { Link } from "@tanstack/react-router";
+import { useEffect, useState, type ReactNode } from "react";
+import {
+  Home, Search, Heart, PlusCircle, Menu, X, Users, Mail, ExternalLink, MapPin,
+} from "lucide-react";
+import { localSettings } from "@/data/properties";
+
+export const TEMPORARIOS_URL = "https://temporar.com.ar";
+
+export function Logo({ className = "" }: { className?: string }) {
+  return (
+    <span className={`relative inline-flex flex-col items-start leading-none text-ink-foreground ${className}`} aria-label="RIVTON Group">
+      <svg viewBox="0 0 120 14" className="h-3 w-[7.5rem]" aria-hidden>
+        <path d="M2 13 Q60 -4 118 6" fill="none" stroke="currentColor" strokeWidth="1.4" />
+      </svg>
+      <span className="absolute right-0 top-0 text-[7px] font-semibold tracking-[0.35em]">GROUP</span>
+      <span className="-mt-0.5 font-sans text-[26px] font-medium tracking-[0.12em]">RIVTON</span>
+    </span>
+  );
+}
+
+const MENU = [
+  { to: "/", label: "Inicio", icon: Home },
+  { to: "/propiedades", label: "Explorar propiedades", icon: Search },
+  { to: "/favoritos", label: "Favoritos", icon: Heart },
+  { to: "/publicar", label: "Publicá tu propiedad", icon: PlusCircle },
+  { to: "/nosotros", label: "Nosotros", icon: Users },
+  { to: "/contacto", label: "Contacto", icon: Mail },
+] as const;
+
+export function SiteShell({ children }: { children: ReactNode }) {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+  }, [open]);
+  return (
+    <div className="min-h-screen bg-background pb-20 lg:pb-0">
+      <header className="sticky top-0 z-40 bg-ink text-ink-foreground">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
+          <Link to="/" aria-label="Inicio"><Logo /></Link>
+          <nav className="hidden items-center gap-7 text-sm lg:flex">
+            {MENU.slice(1).map((m) => (
+              <Link key={m.to} to={m.to} className="opacity-80 transition-opacity hover:opacity-100" activeProps={{ className: "opacity-100 underline underline-offset-8" }}>
+                {m.label.replace(" propiedades", "")}
+              </Link>
+            ))}
+            <a href={TEMPORARIOS_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 opacity-80 hover:opacity-100">
+              Temporarios <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          </nav>
+          <button onClick={() => setOpen(true)} aria-label="Abrir menú" className="p-2 lg:hidden">
+            <Menu className="h-6 w-6" />
+          </button>
+        </div>
+      </header>
+
+      {open && (
+        <div className="fixed inset-0 z-50 flex flex-col bg-ink text-ink-foreground animate-in fade-in">
+          <div className="flex h-16 items-center justify-between px-5">
+            <Logo />
+            <button onClick={() => setOpen(false)} aria-label="Cerrar menú" className="p-2"><X className="h-7 w-7" /></button>
+          </div>
+          <div className="mx-5 border-t border-ink-foreground/15" />
+          <nav className="flex flex-1 flex-col gap-1 px-5 py-6">
+            {MENU.map((m) => (
+              <Link key={m.to} to={m.to} onClick={() => setOpen(false)} className="flex items-center gap-4 py-3 text-lg">
+                <m.icon className="h-5 w-5 opacity-80" /> {m.label}
+              </Link>
+            ))}
+            <a href={TEMPORARIOS_URL} target="_blank" rel="noreferrer" className="flex items-center gap-4 py-3 text-lg">
+              <ExternalLink className="h-5 w-5 opacity-80" /> Temporarios ↗
+            </a>
+          </nav>
+        </div>
+      )}
+
+      <main>{children}</main>
+      <Footer />
+
+      <nav className="fixed inset-x-0 bottom-0 z-40 border-t bg-background lg:hidden" aria-label="Navegación inferior">
+        <div className="grid grid-cols-5">
+          {[
+            { to: "/", label: "Inicio", icon: Home },
+            { to: "/propiedades", label: "Explorar", icon: Search },
+            { to: "/favoritos", label: "Favoritos", icon: Heart },
+            { to: "/publicar", label: "Publicar", icon: PlusCircle },
+          ].map((t) => (
+            <Link key={t.to} to={t.to} activeOptions={{ exact: t.to === "/" }} className="flex flex-col items-center gap-1 py-2.5 text-[11px] text-muted-foreground" activeProps={{ className: "!text-foreground font-semibold" }}>
+              <t.icon className="h-5 w-5" /> {t.label}
+            </Link>
+          ))}
+          <button onClick={() => setOpen(true)} className="flex flex-col items-center gap-1 py-2.5 text-[11px] text-muted-foreground">
+            <Menu className="h-5 w-5" /> Menú
+          </button>
+        </div>
+      </nav>
+    </div>
+  );
+}
+
+function Footer() {
+  const s = localSettings;
+  return (
+    <footer className="bg-ink text-ink-foreground">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-4 lg:px-8">
+        <div className="md:col-span-2">
+          <Logo />
+          <p className="mt-6 max-w-sm font-display text-2xl leading-snug text-ink-foreground/85">
+            Propiedades con criterio, en Córdoba.
+          </p>
+        </div>
+        <div>
+          <p className="label-caps mb-4 text-ink-foreground/50">Navegación</p>
+          <ul className="space-y-2 text-sm text-ink-foreground/80">
+            {MENU.slice(1).map((m) => <li key={m.to}><Link to={m.to}>{m.label}</Link></li>)}
+            <li><a href={TEMPORARIOS_URL} target="_blank" rel="noreferrer">Temporarios ↗</a></li>
+          </ul>
+        </div>
+        <div>
+          <p className="label-caps mb-4 text-ink-foreground/50">Oficina</p>
+          {s.address && <p className="flex gap-2 text-sm text-ink-foreground/80"><MapPin className="h-4 w-4 shrink-0" /> {s.address}</p>}
+          {s.socials.length > 0 && (
+            <ul className="mt-4 flex gap-4 text-sm">
+              {s.socials.map((x) => <li key={x.url}><a href={x.url} target="_blank" rel="noreferrer">{x.label}</a></li>)}
+            </ul>
+          )}
+        </div>
+      </div>
+      <div className="border-t border-ink-foreground/10">
+        <div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-3 px-5 py-5 text-xs text-ink-foreground/50 lg:px-8">
+          <span>© {new Date().getFullYear()} RIVTON Group</span>
+          <span className="flex gap-5"><span>Términos y condiciones</span><span>Política de privacidad</span></span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export function PageTitle({ eyebrow, title, children }: { eyebrow?: string; title: string; children?: ReactNode }) {
+  return (
+    <div className="mx-auto max-w-7xl px-5 pb-6 pt-8 lg:px-8 lg:pt-14">
+      {eyebrow && <p className="label-caps mb-3 text-muted-foreground">{eyebrow}</p>}
+      <h1 className="text-4xl leading-[1.05] lg:text-6xl">{title}</h1>
+      {children && <div className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground">{children}</div>}
+    </div>
+  );
+}
