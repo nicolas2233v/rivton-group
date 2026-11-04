@@ -14,3 +14,8 @@
 - [x] Place the title and usable search over the architectural photo.
 - [x] Fade the opening content into the second image and scene on scroll.
 - [x] Verify search, scene transitions and mobile fit.
+
+## Three-scene sequence
+- [x] Slow and smooth transitions with clear pauses between three frames.
+- [x] Add a visible Buscar button after the first frame to return to the search.
+- [x] Verify all frames and return-to-search on mobile and desktop.
