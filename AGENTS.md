@@ -14,4 +14,4 @@
 - All form and sorting dropdowns use the shared Radix-based PremiumSelect so keyboard, touch and visual behavior stay consistent.
 - Scroll presentation uses CSS variables updated through animation-frame scroll listeners, with reduced-motion fallbacks to keep effects lightweight and accessible.
 - Homepage reveal choreography uses a shared intersection observer; horizontally scrolling content stays inside an inset viewport so cards never touch the screen edges.
-- The opening search and second architectural scene share one sticky photo stage; scroll-driven hidden scenes are inert so invisible controls cannot receive focus.
+- Opening scenes share one sticky photo stage with eased scroll progress and hold intervals; hidden scenes are inert, and the return-to-search control restores the first frame and input focus without hijacking normal scrolling.
