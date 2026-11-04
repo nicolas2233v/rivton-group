@@ -18,8 +18,14 @@ export const Route = createFileRoute("/propiedades/$slug")({
           { name: "description", content: `${loaderData.p.title}: ${formatPrice(loaderData.p.price)}. Propiedad en ${loaderData.p.operation} con RIVTON Group.` },
           { property: "og:title", content: `${loaderData.p.title} — RIVTON Group` },
           { property: "og:description", content: `${formatPrice(loaderData.p.price)} · ${loaderData.p.bedrooms ?? "-"} dormitorios` },
+          { property: "og:type", content: "website" },
+          { name: "twitter:card", content: "summary_large_image" },
+          ...(loaderData.p.images[0]?.src.startsWith("https://") ? [
+            { property: "og:image", content: loaderData.p.images[0].src },
+            { name: "twitter:image", content: loaderData.p.images[0].src },
+          ] : []),
         ]
-      : [{ title: "Propiedad no disponible — RIVTON Group" }, { name: "robots", content: "noindex" }],
+      : [{ title: "Propiedad no disponible — RIVTON Group" }, { name: "robots", content: "noindex" }, { name: "description", content: "Esta propiedad ya no está disponible. Explorá otras propiedades de RIVTON Group." }, { property: "og:title", content: "Propiedad no disponible — RIVTON Group" }, { property: "og:description", content: "Explorá otras propiedades de RIVTON Group." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }],
   }),
   notFoundComponent: () => (
     <div className="mx-auto max-w-xl px-5 py-24 text-center">

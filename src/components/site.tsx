@@ -3,7 +3,9 @@ import { useEffect, useState, type ReactNode } from "react";
 import {
   Home, Search, Heart, PlusCircle, Menu, X, Users, Mail, ExternalLink, MapPin,
 } from "lucide-react";
-import { localSettings } from "@/data/properties";
+import { getSettings } from "@/services/content";
+import type { SiteSettings } from "@/lib/types";
+import { Button } from "@/components/ui/button";
 
 export const TEMPORARIOS_URL = "https://temporar.com.ar";
 
@@ -30,12 +32,20 @@ const MENU = [
 
 export function SiteShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 24);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [open]);
   return (
     <div className="min-h-screen bg-background pb-20 lg:pb-0">
-      <header className="sticky top-0 z-40 bg-ink text-ink-foreground">
+      <header data-scrolled={scrolled} className="site-header sticky top-0 z-40 text-ink-foreground">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
           <Link to="/" aria-label="Inicio"><Logo /></Link>
           <nav className="hidden items-center gap-7 text-sm lg:flex">
@@ -48,17 +58,17 @@ export function SiteShell({ children }: { children: ReactNode }) {
               Temporarios <ExternalLink className="h-3.5 w-3.5" />
             </a>
           </nav>
-          <button onClick={() => setOpen(true)} aria-label="Abrir menú" className="p-2 lg:hidden">
+           <Button variant="ghost" size="icon" onClick={() => setOpen(true)} aria-label="Abrir menú" className="hover:bg-ink-foreground/10 hover:text-ink-foreground lg:hidden">
             <Menu className="h-6 w-6" />
-          </button>
+           </Button>
         </div>
       </header>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-ink text-ink-foreground animate-in fade-in">
+        <div className="mobile-menu fixed inset-0 z-50 flex flex-col text-ink-foreground animate-in fade-in" role="dialog" aria-modal="true" aria-label="Menú de navegación" onKeyDown={(e) => { if (e.key === "Escape") setOpen(false); }}>
           <div className="flex h-16 items-center justify-between px-5">
             <Logo />
-            <button onClick={() => setOpen(false)} aria-label="Cerrar menú" className="p-2"><X className="h-7 w-7" /></button>
+            <Button autoFocus variant="ghost" size="icon" onClick={() => setOpen(false)} aria-label="Cerrar menú" className="hover:bg-ink-foreground/10 hover:text-ink-foreground"><X className="h-7 w-7" /></Button>
           </div>
           <div className="mx-5 border-t border-ink-foreground/15" />
           <nav className="flex flex-1 flex-col gap-1 px-5 py-6">
@@ -77,7 +87,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <main>{children}</main>
       <Footer />
 
-      <nav className="fixed inset-x-0 bottom-0 z-40 border-t bg-background lg:hidden" aria-label="Navegación inferior">
+      <nav data-scrolled={scrolled} className="mobile-dock fixed inset-x-0 bottom-0 z-40 border-t lg:hidden" aria-label="Navegación inferior">
         <div className="grid grid-cols-5">
           {[
             { to: "/", label: "Inicio", icon: Home },
@@ -89,9 +99,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <t.icon className="h-5 w-5" /> {t.label}
             </Link>
           ))}
-          <button onClick={() => setOpen(true)} className="flex flex-col items-center gap-1 py-2.5 text-[11px] text-muted-foreground">
+          <Button variant="ghost" onClick={() => setOpen(true)} className="h-auto flex-col gap-1 rounded-none py-2.5 text-[11px] text-muted-foreground">
             <Menu className="h-5 w-5" /> Menú
-          </button>
+          </Button>
         </div>
       </nav>
     </div>
@@ -99,7 +109,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
 }
 
 function Footer() {
-  const s = localSettings;
+  const [s, setSettings] = useState<SiteSettings | null>(null);
+  useEffect(() => { let active = true; void getSettings().then((settings) => { if (active) setSettings(settings); }); return () => { active = false; }; }, []);
   return (
     <footer className="bg-ink text-ink-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-4 lg:px-8">
@@ -118,8 +129,8 @@ function Footer() {
         </div>
         <div>
           <p className="label-caps mb-4 text-ink-foreground/50">Oficina</p>
-          {s.address && <p className="flex gap-2 text-sm text-ink-foreground/80"><MapPin className="h-4 w-4 shrink-0" /> {s.address}</p>}
-          {s.socials.length > 0 && (
+          {s?.address && <p className="flex gap-2 text-sm text-ink-foreground/80"><MapPin className="h-4 w-4 shrink-0" /> {s.address}</p>}
+          {s && s.socials.length > 0 && (
             <ul className="mt-4 flex gap-4 text-sm">
               {s.socials.map((x) => <li key={x.url}><a href={x.url} target="_blank" rel="noreferrer">{x.label}</a></li>)}
             </ul>

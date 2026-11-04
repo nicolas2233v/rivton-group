@@ -1,5 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { z } from "zod";
+import { PremiumSelect } from "@/components/premium-select";
+import { Button } from "@/components/ui/button";
 
 // Validates locally. There is no backend yet, so we never claim the message was sent.
 export type Field = { name: string; label: string; type?: "text" | "email" | "tel" | "textarea" | "select"; options?: string[]; required?: boolean };
@@ -43,17 +45,14 @@ export function LeadForm({ fields, submitLabel, defaults = {} }: { fields: Field
           {f.type === "textarea" ? (
             <textarea id={f.name} rows={4} className={cls} value={values[f.name] ?? ""} onChange={(e) => setValues({ ...values, [f.name]: e.target.value })} />
           ) : f.type === "select" ? (
-            <select id={f.name} className={cls} value={values[f.name] ?? ""} onChange={(e) => setValues({ ...values, [f.name]: e.target.value })}>
-              <option value="">Seleccionar</option>
-              {f.options?.map((o) => <option key={o}>{o}</option>)}
-            </select>
+            <PremiumSelect id={f.name} label={f.label} invalid={Boolean(errors[f.name])} value={values[f.name] ?? ""} onValueChange={(v) => setValues({ ...values, [f.name]: v })} options={[{value:"",label:"Seleccionar"}, ...(f.options ?? []).map((o) => ({value:o,label:o}))]} />
           ) : (
             <input id={f.name} type={f.type ?? "text"} className={cls} value={values[f.name] ?? ""} onChange={(e) => setValues({ ...values, [f.name]: e.target.value })} />
           )}
           {errors[f.name] && <p className="mt-1 text-xs text-destructive">{errors[f.name]}</p>}
         </div>
       ))}
-      <button type="submit" className="h-12 w-full rounded-lg bg-ink text-sm font-semibold text-ink-foreground">{submitLabel}</button>
+      <Button type="submit" className="h-12 w-full rounded-lg font-semibold">{submitLabel}</Button>
       {done && (
         <Notice>
           Los datos son válidos. El envío todavía no está conectado: tu solicitud <strong>no fue enviada</strong>. Estará disponible cuando se configure el formulario.

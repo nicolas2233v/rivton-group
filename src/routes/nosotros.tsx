@@ -9,6 +9,8 @@ export const Route = createFileRoute("/nosotros")({
       { name: "description", content: "Conocé al equipo de RIVTON Group, inmobiliaria en Córdoba." },
       { property: "og:title", content: "Nosotros — RIVTON Group" },
       { property: "og:description", content: "Un equipo dedicado a la comercialización de propiedades en Córdoba." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   loader: async () => ({ team: await getTeam(), settings: await getSettings() }),

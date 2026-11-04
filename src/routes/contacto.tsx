@@ -13,6 +13,8 @@ export const Route = createFileRoute("/contacto")({
       { name: "description", content: "Escribile a RIVTON Group para consultar por propiedades o publicar la tuya." },
       { property: "og:title", content: "Contacto — RIVTON Group" },
       { property: "og:description", content: "Consultas sobre propiedades en Córdoba." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   loader: () => getSettings(),

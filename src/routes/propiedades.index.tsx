@@ -6,6 +6,7 @@ import type { PropertyFilters } from "@/lib/types";
 import { getProperties } from "@/services/content";
 import { PropertyCard } from "@/components/property";
 import { SearchForm } from "@/components/search-form";
+import { PremiumSelect } from "@/components/premium-select";
 
 export const Route = createFileRoute("/propiedades/")({
   validateSearch: (s: Record<string, unknown>): PropertyFilters => parseFilters(s),
@@ -15,6 +16,8 @@ export const Route = createFileRoute("/propiedades/")({
       { name: "description", content: "Buscá casas, departamentos y terrenos en venta y alquiler con RIVTON Group." },
       { property: "og:title", content: "Explorar propiedades — RIVTON Group" },
       { property: "og:description", content: "Filtrá por operación, tipo, precio, dormitorios y baños." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   loader: () => getProperties(),
@@ -50,11 +53,7 @@ function Results() {
           <h1 className="text-4xl lg:text-5xl">Propiedades</h1>
         </div>
         <div className="flex items-center gap-2">
-          <select aria-label="Ordenar" value={f.orden ?? "recientes"} onChange={(e) => navigate({ search: (p) => ({ ...p, orden: e.target.value as PropertyFilters["orden"] }) })} className="h-10 rounded-full border bg-background px-4 text-sm">
-            <option value="recientes">Más recientes</option>
-            <option value="precio-asc">Menor precio</option>
-            <option value="precio-desc">Mayor precio</option>
-          </select>
+          <PremiumSelect label="Ordenar" value={f.orden ?? "recientes"} onValueChange={(v) => navigate({ search: (p) => ({ ...p, orden: v as PropertyFilters["orden"] }) })} className="h-10 w-[180px]" options={[{value:"recientes",label:"Más recientes"},{value:"precio-asc",label:"Menor precio"},{value:"precio-desc",label:"Mayor precio"}]} />
           <div className="flex rounded-full border p-1">
             <button aria-label="Listado" onClick={() => setView("list")} className={`rounded-full p-2 ${view === "list" ? "bg-ink text-ink-foreground" : ""}`}><List className="h-4 w-4" /></button>
             <button aria-label="Mapa" onClick={() => setView("map")} className={`rounded-full p-2 ${view === "map" ? "bg-ink text-ink-foreground" : ""}`}><MapIcon className="h-4 w-4" /></button>

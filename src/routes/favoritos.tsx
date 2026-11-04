@@ -12,6 +12,8 @@ export const Route = createFileRoute("/favoritos")({
       { name: "description", content: "Las propiedades que guardaste en RIVTON Group." },
       { property: "og:title", content: "Favoritos — RIVTON Group" },
       { property: "og:description", content: "Tus propiedades guardadas." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   loader: () => getProperties(),
