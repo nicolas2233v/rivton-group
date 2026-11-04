@@ -11,6 +11,6 @@
 - [x] Verify movement, navigation and spacing on mobile and desktop.
 
 ## Integrated opening scene
-- [ ] Place the title and usable search over the architectural photo.
-- [ ] Fade the opening content into the second image and scene on scroll.
-- [ ] Verify search, scene transitions and mobile fit.
+- [x] Place the title and usable search over the architectural photo.
+- [x] Fade the opening content into the second image and scene on scroll.
+- [x] Verify search, scene transitions and mobile fit.

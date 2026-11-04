@@ -165,7 +165,7 @@
   .immersive-search .premium-select { padding-inline: 9px; }
   .immersive-search .premium-select > span > svg { display: none; }
   .immersive-search .premium-select > span { font-size: 12px; }
-  .story-progress-track { bottom: 76px; }
+  .story-progress-track { bottom: 40px; }
   .story-caption { padding: 12px 16px; }
   .story-caption .label-caps { font-size: 9px; }
 }
