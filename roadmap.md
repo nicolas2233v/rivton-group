@@ -9,3 +9,8 @@
 - [x] Extend scroll choreography and glass accents.
 - [x] Preserve safe lateral margins on carousels and grids.
 - [x] Verify movement, navigation and spacing on mobile and desktop.
+
+## Integrated opening scene
+- [x] Place the title and usable search over the architectural photo.
+- [x] Fade the opening content into the second image and scene on scroll.
+- [x] Verify search, scene transitions and mobile fit.

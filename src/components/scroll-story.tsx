@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import exterior from "@/assets/hero-house.jpg";
 import interior from "@/assets/interior-living.jpg";
 import { Button } from "@/components/ui/button";
+import { SearchForm } from "@/components/search-form";
 
 export function ScrollStory() {
   const section = useRef<HTMLElement>(null);
@@ -15,9 +16,17 @@ export function ScrollStory() {
     const update = () => {
       frame = 0;
       const rect = node.getBoundingClientRect();
-      const distance = Math.max(1, rect.height - window.innerHeight);
+      const stage = node.querySelector<HTMLElement>(".story-stage");
+      const distance = Math.max(1, rect.height - (stage?.offsetHeight ?? window.innerHeight));
       const progress = reduced.matches ? 0 : Math.min(1, Math.max(0, -rect.top / distance));
       node.style.setProperty("--story-progress", String(progress));
+      node.style.setProperty("--intro-opacity", String(Math.max(0, 1 - progress / 0.3)));
+      node.style.setProperty("--scene-opacity", String(Math.min(1, Math.max(0, (progress - 0.42) / 0.3))));
+      node.style.setProperty("--image-reveal", String(Math.min(1, Math.max(0, (progress - 0.25) / 0.5))));
+      const intro = node.querySelector<HTMLElement>(".story-intro");
+      const scene = node.querySelector<HTMLElement>(".story-second");
+      if (intro) { intro.inert = progress >= 0.3; intro.setAttribute("aria-hidden", String(progress >= 0.3)); }
+      if (scene) { scene.inert = progress < 0.45; scene.setAttribute("aria-hidden", String(progress < 0.45)); }
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     update();
@@ -35,10 +44,18 @@ export function ScrollStory() {
   return (
     <section ref={section} className="scroll-story" aria-label="Espacios RIVTON">
       <div className="story-stage">
-        <img src={exterior} alt="Casa contemporánea con grandes ventanales" loading="lazy" className="story-image story-exterior" />
+        <img src={exterior} alt="Casa contemporánea con grandes ventanales" fetchPriority="high" className="story-image story-exterior" />
         <img src={interior} alt="Interior residencial luminoso" loading="lazy" className="story-image story-interior" />
         <div className="story-shade" />
-        <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-between px-5 py-10 text-ink-foreground lg:px-8 lg:py-16">
+        <div className="story-intro text-ink-foreground">
+          <div className="story-intro-heading">
+            <p className="label-caps mb-4 text-ink-foreground/85">RIVTON Group · Córdoba</p>
+            <h1 className="text-5xl leading-[1.02] lg:text-7xl">Encontrá<br />tu propiedad.</h1>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-foreground/85">Propiedades seleccionadas para cada etapa de tu vida.</p>
+          </div>
+          <div className="text-foreground"><SearchForm immersive /></div>
+        </div>
+        <div className="story-second text-ink-foreground" aria-hidden="true" inert>
           <div className="story-caption flex items-center justify-between gap-3">
             <p className="label-caps">RIVTON · Espacios para vivir</p>
             <span className="font-display text-xl" aria-hidden="true">01 — 02</span>
@@ -52,8 +69,8 @@ export function ScrollStory() {
               </Button>
             </div>
           </div>
-          <div className="story-progress-track" aria-hidden="true"><div className="story-progress-fill" /></div>
         </div>
+        <div className="story-progress-track" aria-hidden="true"><div className="story-progress-fill" /></div>
       </div>
     </section>
   );

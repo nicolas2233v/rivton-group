@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import {
   Home, Search, Heart, PlusCircle, Menu, X, Users, Mail, ExternalLink, MapPin,
@@ -31,6 +31,7 @@ const MENU = [
 ] as const;
 
 export function SiteShell({ children }: { children: ReactNode }) {
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -45,7 +46,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
   }, [open]);
   return (
     <div className="min-h-screen bg-background pb-24 lg:pb-0">
-      <div className="h-[88px] bg-ink" aria-hidden="true" />
+      {location.pathname !== "/" && <div className="h-[88px] bg-background" aria-hidden="true" />}
       <header data-scrolled={scrolled} className="site-header fixed top-3 z-40 text-ink-foreground">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
           <Link to="/" aria-label="Inicio"><Logo /></Link>

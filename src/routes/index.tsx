@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Home, Building2, Trees, Waves, KeyRound, ExternalLink, ArrowRight } from "lucide-react";
 import strip from "@/assets/architecture-strip.jpg";
-import { SearchForm } from "@/components/search-form";
 import { PropertyCard, PropertyRow } from "@/components/property";
 import { TEMPORARIOS_URL } from "@/components/site";
 import { getFeatured, getLatest, getTeam } from "@/services/content";
@@ -35,18 +34,6 @@ function Index() {
   const { featured, latest, team } = Route.useLoaderData();
   return (
     <ScrollEffects>
-      {/* 2. Editorial intro + 3. search */}
-      <section className="bg-ink text-ink-foreground">
-        <div className="mx-auto max-w-7xl px-5 pb-10 pt-8 lg:grid lg:grid-cols-[1fr_1.2fr] lg:items-end lg:gap-12 lg:px-8 lg:pb-16 lg:pt-16">
-          <div>
-            <p className="label-caps mb-4 text-ink-foreground/60">Inmobiliaria · Córdoba</p>
-            <h1 className="text-[44px] leading-[0.98] lg:text-7xl">Encontrá<br />tu propiedad.</h1>
-            <p className="mt-4 max-w-sm text-[15px] text-ink-foreground/75">Propiedades seleccionadas para cada etapa de tu vida.</p>
-          </div>
-          <div className="mt-8 text-foreground lg:mt-0"><SearchForm /></div>
-        </div>
-      </section>
-
       <ScrollStory />
 
       {/* 5. Featured carousel */}
