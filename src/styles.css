@@ -180,7 +180,7 @@
   .story-scroll-cue { display: flex; position: absolute; bottom: calc(var(--dock-clearance) + 14px); left: 20px; right: 20px; align-items: center; justify-content: center; gap: 8px; font-size: 11px; text-shadow: var(--shadow-navigation); pointer-events: none; }
   .story-scroll-cue svg { animation: scroll-nudge 2s ease-in-out infinite; }
   .story-progress-track { bottom: calc(var(--dock-clearance) + 4px); }
-  .story-search-return { top: 196px; }
+  .story-search-return { top: 212px; }
   .story-caption { padding: 12px 16px; }
   .story-caption .label-caps { font-size: 9px; }
   .story-caption { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
@@ -200,7 +200,7 @@
   .immersive-search input, .immersive-search .premium-select { height: 42px; }
   .immersive-search > button { margin-top: 8px; }
   .story-second, .story-third { padding-top: 92px; overflow-y: auto; }
-  .story-search-return { top: 172px; }
+  .story-search-return { top: 188px; }
   .story-copy h2 { font-size: 36px; }
   .story-copy > div { margin-top: 16px; gap: 12px; }
 }
