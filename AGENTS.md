@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- All content (properties, settings, team) is read through `src/services/content.ts`; UI never imports data files directly, so a WordPress REST adapter can replace local data later.
+- Search filters live in the URL (`/propiedades?…`) and are parsed/applied in `src/lib/filters.ts`, covered by `src/test/filters.test.ts`.
