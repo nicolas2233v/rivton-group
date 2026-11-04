@@ -16,6 +16,6 @@
 - [x] Verify search, scene transitions and mobile fit.
 
 ## Three-scene sequence
-- [ ] Slow and smooth transitions with clear pauses between three frames.
-- [ ] Add a visible Buscar button after the first frame to return to the search.
-- [ ] Verify all frames and return-to-search on mobile and desktop.
+- [x] Slow and smooth transitions with clear pauses between three frames.
+- [x] Add a visible Buscar button after the first frame to return to the search.
+- [x] Verify all frames and return-to-search on mobile and desktop.
