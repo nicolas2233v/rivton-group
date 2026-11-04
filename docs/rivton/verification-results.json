@@ -3,8 +3,8 @@
   "baselineCommit": "079f5501c52104d816152c392f2c6531e470bcca",
   "branch": "codex/rivton-core-phase-1",
   "playwrightStats": {
-    "startTime": "2026-11-04T07:35:31.623Z",
-    "duration": 142743.91,
+    "startTime": "2026-11-04T07:42:03.560Z",
+    "duration": 122706.269,
     "expected": 51,
     "skipped": 1,
     "unexpected": 0,
@@ -37,5 +37,6 @@
   "lint": "passed; src/core and new unit tests",
   "visualSnapshots": 40,
   "productionDeployment": false,
-  "dependencyAudit": "findings; see dependencies.md"
+  "dependencyAudit": "findings; see dependencies.md",
+  "artifactWatcherIsolationVerified": true
 }

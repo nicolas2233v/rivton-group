@@ -33,3 +33,10 @@ Preparado para configurar: URL pública del CMS, contrato WordPress, campos come
 Pendiente en fases posteriores: plugin/panel/capabilities, integración editorial de textos/menús/logo/media/secciones restantes, publicación sin redeploy demostrada contra CMS real, renderers completos, sitemap/robots/redirects reales, privacidad/legales revisados, consentimiento UI, integraciones y conversiones reales, reporting, seguridad ASVS completa, AA manual, CWV de campo, backups/migraciones/aislamiento y despliegue Vercel validado. Credenciales y servicios externos sólo se solicitarán cuando corresponda implementarlos.
 
 No se certifica seguridad, WCAG AA, entrega de formularios ni reservas Calendly. No se inventaron datos de rendimiento, personas, contactos, propiedades nuevas o reseñas. Permanecen las imágenes ilustrativas y los datos ya presentes en la base, con su limitación documentada.
+
+
+## Observaciones del entorno de pruebas
+
+Las capturas se ejecutan contra Vite en desarrollo, no contra un deployment de producción. El preset instrumentado de la base mostró advertencias de hidratación de atributos de inspección/estilo (por ejemplo data-tsd-source y style); no se declara una consola libre de advertencias ni se modificó ese preset para ocultarlas. El smoke del bundle publicado y el triage de esas advertencias corresponden al gate de staging.
+
+Los HTML contenidos en trazas de Playwright provocaban recargas del watcher de Vite al estar en .tmp. La configuración de desarrollo ahora ignora exclusivamente esa carpeta de artefactos; los archivos de aplicación siguen vigilados. Se repitió la matriz tras ese aislamiento. Las referencias visuales siguen siendo las de main intacto.
