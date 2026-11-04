@@ -3,20 +3,21 @@ import { Bed, Bath, Ruler, Heart } from "lucide-react";
 import type { Property } from "@/lib/types";
 import { formatArea, formatPrice } from "@/lib/filters";
 import { useFavorites } from "@/hooks/use-favorites";
+import { Button } from "@/components/ui/button";
 
 export function FavButton({ id, className = "" }: { id: string; className?: string }) {
   const { has, toggle } = useFavorites();
   const on = has(id);
   return (
-    <button
+    <Button variant="ghost" size="icon"
       type="button"
       aria-label={on ? "Quitar de favoritos" : "Agregar a favoritos"}
       aria-pressed={on}
       onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggle(id); }}
-      className={`grid h-9 w-9 place-items-center rounded-full bg-background/95 shadow-sm ${className}`}
+      className={`glass-control grid h-9 w-9 place-items-center rounded-full text-foreground ${className}`}
     >
       <Heart className={`h-4 w-4 ${on ? "fill-foreground" : ""}`} />
-    </button>
+    </Button>
   );
 }
 
@@ -32,7 +33,7 @@ export function Specs({ p, className = "" }: { p: Property; className?: string }
 }
 
 const OpTag = ({ p }: { p: Property }) => (
-  <span className="label-caps rounded-sm bg-background/95 px-2 py-1 text-[10px] text-foreground">
+  <span className="glass-control label-caps rounded-full px-3 py-1.5 text-[10px] text-foreground">
     {p.operation === "venta" ? "Venta" : "Alquiler"}
   </span>
 );

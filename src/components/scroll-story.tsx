@@ -39,7 +39,7 @@ export function ScrollStory() {
         <img src={interior} alt="Interior residencial luminoso" loading="lazy" className="story-image story-interior" />
         <div className="story-shade" />
         <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-between px-5 py-10 text-ink-foreground lg:px-8 lg:py-16">
-          <div className="flex items-center justify-between border-b border-ink-foreground/30 pb-5">
+          <div className="story-caption flex items-center justify-between gap-3">
             <p className="label-caps">RIVTON · Espacios para vivir</p>
             <span className="font-display text-xl" aria-hidden="true">01 — 02</span>
           </div>
