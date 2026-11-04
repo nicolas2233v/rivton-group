@@ -6,6 +6,7 @@ import { SearchForm } from "@/components/search-form";
 import { PropertyCard, PropertyRow } from "@/components/property";
 import { TEMPORARIOS_URL } from "@/components/site";
 import { getFeatured, getLatest, getTeam } from "@/services/content";
+import { ScrollStory } from "@/components/scroll-story";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -44,15 +45,7 @@ function Index() {
         </div>
       </section>
 
-      {/* 4. Architectural photo */}
-      <section className="relative h-[60vh] min-h-80 max-h-[640px] overflow-hidden">
-        <img src={hero} alt="Arquitectura residencial contemporánea al atardecer" width={1280} height={1600} className="absolute inset-0 h-full w-full object-cover" />
-        <div className="hero-scrim absolute inset-0" />
-        <div className="relative mx-auto flex h-full max-w-7xl items-end justify-between px-5 pb-8 lg:px-8">
-          <h2 className="text-5xl leading-none text-ink-foreground lg:text-7xl">Espacios<br />para vivir.</h2>
-          <Link to="/propiedades" aria-label="Explorar propiedades" className="grid h-12 w-12 place-items-center rounded-full bg-secondary text-foreground"><ArrowRight className="h-5 w-5" /></Link>
-        </div>
-      </section>
+      <ScrollStory />
 
       {/* 5. Featured carousel */}
       <section className="py-12 lg:py-20">
