@@ -44,8 +44,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
   return (
-    <div className="min-h-screen bg-background pb-20 lg:pb-0">
-      <header data-scrolled={scrolled} className="site-header sticky top-0 z-40 text-ink-foreground">
+    <div className="min-h-screen bg-background pb-24 lg:pb-0">
+      <div className="h-[88px] bg-ink" aria-hidden="true" />
+      <header data-scrolled={scrolled} className="site-header fixed top-3 z-40 text-ink-foreground">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
           <Link to="/" aria-label="Inicio"><Logo /></Link>
           <nav className="hidden items-center gap-7 text-sm lg:flex">
@@ -65,7 +66,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       </header>
 
       {open && (
-        <div className="mobile-menu fixed inset-0 z-50 flex flex-col text-ink-foreground animate-in fade-in" role="dialog" aria-modal="true" aria-label="Menú de navegación" onKeyDown={(e) => { if (e.key === "Escape") setOpen(false); }}>
+        <div className="mobile-menu fixed z-50 flex flex-col text-ink-foreground animate-in fade-in" role="dialog" aria-modal="true" aria-label="Menú de navegación" onKeyDown={(e) => { if (e.key === "Escape") setOpen(false); }}>
           <div className="flex h-16 items-center justify-between px-5">
             <Logo />
             <Button autoFocus variant="ghost" size="icon" onClick={() => setOpen(false)} aria-label="Cerrar menú" className="hover:bg-ink-foreground/10 hover:text-ink-foreground"><X className="h-7 w-7" /></Button>
@@ -87,7 +88,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <main>{children}</main>
       <Footer />
 
-      <nav data-scrolled={scrolled} className="mobile-dock fixed inset-x-0 bottom-0 z-40 border-t lg:hidden" aria-label="Navegación inferior">
+      <nav data-scrolled={scrolled} className="mobile-dock fixed z-40 lg:hidden" aria-label="Navegación inferior">
         <div className="grid grid-cols-5">
           {[
             { to: "/", label: "Inicio", icon: Home },

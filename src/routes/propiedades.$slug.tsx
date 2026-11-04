@@ -119,7 +119,7 @@ function Detail() {
       </div>
 
       {n > 1 && (
-        <div className="no-scrollbar flex gap-2 overflow-x-auto px-5 pb-10 lg:mt-6 lg:px-0">
+        <div className="no-scrollbar mx-5 flex gap-2 overflow-x-auto pb-10 lg:mx-0 lg:mt-6">
           {p.images.map((img, k) => (
             <button key={k} onClick={() => setI(k)} className={`h-20 w-28 shrink-0 overflow-hidden rounded-lg border-2 ${k === i ? "border-foreground" : "border-transparent"}`}>
               <img src={img.src} alt={img.alt} loading="lazy" className="h-full w-full object-cover" />

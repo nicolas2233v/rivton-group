@@ -13,3 +13,4 @@
 - Search filters live in the URL (`/propiedades?…`) and are parsed/applied in `src/lib/filters.ts`, covered by `src/test/filters.test.ts`.
 - All form and sorting dropdowns use the shared Radix-based PremiumSelect so keyboard, touch and visual behavior stay consistent.
 - Scroll presentation uses CSS variables updated through animation-frame scroll listeners, with reduced-motion fallbacks to keep effects lightweight and accessible.
+- Homepage reveal choreography uses a shared intersection observer; horizontally scrolling content stays inside an inset viewport so cards never touch the screen edges.
