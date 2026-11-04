@@ -19,3 +19,8 @@
 - [x] Slow and smooth transitions with clear pauses between three frames.
 - [x] Add a visible Buscar button after the first frame to return to the search.
 - [x] Verify all frames and return-to-search on mobile and desktop.
+
+## Mobile scroll and safe areas
+- [x] Shorten mobile scroll and add a swipe cue.
+- [x] Keep scene buttons above the dock across small screens and device safe areas.
+- [x] Verify iPhone XR, short mobile screens, tablet and desktop.
