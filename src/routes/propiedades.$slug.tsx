@@ -36,6 +36,7 @@ function Detail() {
   const [i, setI] = useState(0);
   const n = p.images.length;
   const wa = p.whatsapp ?? settings.whatsapp;
+  const cur = p.images[i] ?? p.images[0];
 
   const facts = [
     p.bedrooms != null && { icon: Bed, value: p.bedrooms, label: "Dormitorios" },
@@ -48,7 +49,7 @@ function Detail() {
     <div className="mx-auto max-w-7xl lg:px-8 lg:py-10">
       <div className="lg:grid lg:grid-cols-[1.5fr_1fr] lg:gap-12">
         <div className="relative aspect-[4/3] overflow-hidden bg-muted lg:rounded-2xl">
-          <img src={p.images[i].src} alt={p.images[i].alt} width={1280} height={896} className="h-full w-full object-cover" />
+          <img src={cur?.src} alt={cur?.alt} width={1280} height={896} className="h-full w-full object-cover" />
           <button onClick={() => router.history.back()} aria-label="Volver" className="absolute left-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-background/95"><ChevronLeft className="h-5 w-5" /></button>
           <FavButton id={p.id} className="absolute right-4 top-4 h-10 w-10" />
           {n > 1 && (

@@ -12,7 +12,8 @@ export interface WPProperty {
 }
 
 export function adaptWPProperty(wp: WPProperty): Property {
-  const a = wp.acf as Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const a = wp.acf as any;
   return {
     id: String(wp.id),
     slug: wp.slug,

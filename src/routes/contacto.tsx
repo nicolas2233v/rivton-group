@@ -6,7 +6,7 @@ import { getSettings } from "@/services/content";
 
 export const Route = createFileRoute("/contacto")({
   validateSearch: (s: Record<string, unknown>): { propiedad?: string } =>
-    typeof s.propiedad === "string" ? { propiedad: s.propiedad } : {},
+    typeof s["propiedad"] === "string" ? { propiedad: s["propiedad"] } : {},
   head: () => ({
     meta: [
       { title: "Contacto — RIVTON Group" },
