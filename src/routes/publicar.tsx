@@ -10,6 +10,8 @@ export const Route = createFileRoute("/publicar")({
       { name: "description", content: "Vendé o alquilá tu inmueble con la estrategia y el respaldo de RIVTON Group." },
       { property: "og:title", content: "Publicá tu propiedad — RIVTON Group" },
       { property: "og:description", content: "Te acompañamos para que tu inmueble llegue a las personas indicadas." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Publish,

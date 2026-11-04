@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Home, Building2, Trees, Waves, KeyRound, ExternalLink, ArrowRight } from "lucide-react";
-import hero from "@/assets/hero-house.jpg";
 import strip from "@/assets/architecture-strip.jpg";
 import { SearchForm } from "@/components/search-form";
 import { PropertyCard, PropertyRow } from "@/components/property";
@@ -15,6 +14,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Comprá o alquilá casas y departamentos en Córdoba con RIVTON Group. Propiedades seleccionadas y asesoramiento profesional." },
       { property: "og:title", content: "RIVTON Group — Encontrá tu propiedad" },
       { property: "og:description", content: "Propiedades seleccionadas en Córdoba, con asesoramiento profesional." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   loader: async () => ({ featured: await getFeatured(), latest: await getLatest(4), team: await getTeam() }),

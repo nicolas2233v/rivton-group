@@ -16,6 +16,8 @@ export const Route = createFileRoute("/propiedades/")({
       { name: "description", content: "Buscá casas, departamentos y terrenos en venta y alquiler con RIVTON Group." },
       { property: "og:title", content: "Explorar propiedades — RIVTON Group" },
       { property: "og:description", content: "Filtrá por operación, tipo, precio, dormitorios y baños." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   loader: () => getProperties(),

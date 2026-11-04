@@ -31,8 +31,8 @@ export function SearchForm({ initial = {} }: { initial?: PropertyFilters }) {
           Temporarios <ExternalLink className="h-3.5 w-3.5" />
         </a>
       </div>
-      <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
-        <label className="relative sm:col-span-2 lg:col-span-4">
+      <div className="grid gap-2.5 sm:grid-cols-2">
+        <label className="relative sm:col-span-2">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <input aria-label="Ubicación" placeholder="¿Dónde buscás?" value={f.ubicacion ?? ""} onChange={(e) => set("ubicacion", e.target.value)} className={`${sel} pl-9`} />
         </label>
