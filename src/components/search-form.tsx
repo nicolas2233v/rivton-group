@@ -8,7 +8,7 @@ import { TEMPORARIOS_URL } from "./site";
 
 const sel = "h-12 w-full appearance-none rounded-lg border bg-background px-3 text-sm font-medium outline-none focus:border-foreground";
 
-export function SearchForm({ initial = {} }: { initial?: PropertyFilters }) {
+export function SearchForm({ initial = {}, immersive = false }: { initial?: PropertyFilters; immersive?: boolean }) {
   const navigate = useNavigate();
   const [f, setF] = useState<PropertyFilters>({ operacion: "venta", ...initial });
   const [more, setMore] = useState(false);
@@ -18,7 +18,7 @@ export function SearchForm({ initial = {} }: { initial?: PropertyFilters }) {
   return (
     <form
       onSubmit={(e) => { e.preventDefault(); navigate({ to: "/propiedades", search: f }); }}
-      className="search-panel rounded-lg border bg-background p-4 sm:p-5"
+      className={`search-panel rounded-lg border bg-background p-4 sm:p-5 ${immersive ? "immersive-search" : ""}`}
     >
       <div className="mb-4 flex items-center gap-2 text-sm">
         {(["venta", "alquiler"] as const).map((op) => (
