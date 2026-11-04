@@ -158,12 +158,17 @@
 .immersive-search { background: var(--glass-dock); border-color: var(--glass-light-border); backdrop-filter: blur(24px) saturate(130%); }
 .story-progress-track { position: absolute; bottom: 30px; left: max(20px, calc((100% - 1216px) / 2)); right: max(20px, calc((100% - 1216px) / 2)); height: 1px; background: color-mix(in oklch, var(--ink-foreground) 30%, transparent); }
 .story-progress-fill { height: 100%; width: calc(15% + var(--story-progress) * 85%); background: var(--ink-foreground); }
-@media (max-width: 767px) {
-  .scroll-story { height: max(410svh, 3000px); }
-  .story-stage { height: 94svh; min-height: 740px; }
+.story-scroll-cue { display: none; }
+@media (max-width: 1023px) {
+  :root { --dock-clearance: calc(100px + env(safe-area-inset-bottom, 0px)); }
+  html { scroll-padding-block: 92px var(--dock-clearance); }
+  main :is(a, button, input, select) { scroll-margin-bottom: var(--dock-clearance); }
+  .scroll-story { height: 270svh; }
+  .story-stage { height: 100svh; min-height: 0; }
   .story-exterior { object-position: 54% center; }
-  .story-intro, .story-second, .story-third { padding: 104px 20px 80px; }
+  .story-intro, .story-second, .story-third { padding: 104px 20px calc(var(--dock-clearance) + 50px); }
   .story-intro { grid-template-columns: minmax(0, 1fr); align-content: center; gap: 22px; }
+  .story-intro > div { min-width: 0; }
   .story-intro h1 { font-size: 44px; }
   .story-intro-heading > p:last-child { margin-top: 10px; }
   .immersive-search > div:nth-child(2) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -171,9 +176,37 @@
   .immersive-search .premium-select { padding-inline: 9px; }
   .immersive-search .premium-select > span > svg { display: none; }
   .immersive-search .premium-select > span { font-size: 12px; }
-  .story-progress-track { bottom: 40px; }
+  .story-scroll-cue { display: flex; position: absolute; bottom: calc(var(--dock-clearance) + 14px); left: 20px; right: 20px; align-items: center; justify-content: center; gap: 8px; font-size: 11px; text-shadow: var(--shadow-navigation); pointer-events: none; }
+  .story-scroll-cue svg { animation: scroll-nudge 2s ease-in-out infinite; }
+  .story-progress-track { bottom: calc(var(--dock-clearance) + 4px); }
   .story-caption { padding: 12px 16px; }
   .story-caption .label-caps { font-size: 9px; }
+  .story-caption { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+  .story-caption p { min-width: 0; }
+  .story-copy > div { display: grid; gap: 20px; }
+  .story-copy > div > a { justify-self: start; }
+}
+@keyframes scroll-nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+@media (max-width: 1023px) and (max-height: 760px) {
+  .story-intro { padding-top: 92px; gap: 14px; align-content: start; overflow-y: auto; }
+  .story-intro h1 { font-size: 36px; }
+  .story-intro-heading .label-caps { margin-bottom: 8px; }
+  .story-intro-heading > p:last-child { display: none; }
+  .immersive-search { padding: 12px; }
+  .immersive-search > div:first-child { margin-bottom: 10px; gap: 0; }
+  .immersive-search > div:nth-child(2) { gap: 8px; }
+  .immersive-search input, .immersive-search .premium-select { height: 42px; }
+  .immersive-search > button { margin-top: 8px; }
+  .story-second, .story-third { padding-top: 92px; overflow-y: auto; }
+  .story-second .story-caption, .story-third .story-caption { margin-top: 50px; }
+  .story-copy h2 { font-size: 36px; }
+  .story-copy > div { margin-top: 16px; gap: 12px; }
+}
+@media (max-width: 1023px) and (max-height: 520px) {
+  .story-intro { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 20px; }
+  .story-intro-heading { position: sticky; top: 0; }
+  .story-second, .story-third { justify-content: flex-start; gap: 20px; }
+  .story-caption { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -181,7 +214,7 @@
   .story-stage { position: relative; top: 0; }
   .story-image, .story-intro { transform: none; }
   .story-interior, .story-terrace { display: none; }
-  .story-second, .story-third, .story-search-return, .story-progress-track { display: none; }
+  .story-second, .story-third, .story-search-return, .story-progress-track, .story-scroll-cue { display: none; }
   [data-motion-ready] [data-reveal], [data-motion-ready] [data-reveal="stagger"] > * { opacity: 1; transform: none; }
   .parallax-image { transform: none; }
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Search } from "lucide-react";
+import { ArrowUpRight, Search, ChevronsDown } from "lucide-react";
 import exterior from "@/assets/hero-house.jpg";
 import interior from "@/assets/interior-living.jpg";
 import terrace from "@/assets/terrace-garden.jpg";
@@ -122,6 +122,9 @@ export function ScrollStory() {
         <Button onClick={returnToSearch} variant="outline" className="story-search-return rounded-full text-ink-foreground" data-visible="false" inert>
           <Search className="h-4 w-4" /> Buscar
         </Button>
+        <div className="story-scroll-cue text-ink-foreground" aria-hidden="true">
+          <span>Deslizá para descubrir</span><ChevronsDown className="h-4 w-4 shrink-0" />
+        </div>
         <div className="story-progress-track" aria-hidden="true"><div className="story-progress-fill" /></div>
       </div>
     </section>
