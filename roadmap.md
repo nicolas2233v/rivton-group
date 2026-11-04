@@ -5,7 +5,7 @@
 - [x] Verify search, dropdowns, navigation and mobile presentation.
 
 ## Additional refinement
-- [ ] Float and round desktop and mobile navigation.
-- [ ] Extend scroll choreography and glass accents.
-- [ ] Preserve safe lateral margins on carousels and grids.
-- [ ] Verify movement, navigation and spacing on mobile and desktop.
+- [x] Float and round desktop and mobile navigation.
+- [x] Extend scroll choreography and glass accents.
+- [x] Preserve safe lateral margins on carousels and grids.
+- [x] Verify movement, navigation and spacing on mobile and desktop.

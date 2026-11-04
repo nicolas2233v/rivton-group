@@ -144,6 +144,7 @@
 .story-interior { clip-path: inset(0 calc(100% - var(--story-progress) * 100%) 0 0); transform: scale(calc(1.08 - var(--story-progress) * 0.08)); }
 .story-shade { position: absolute; inset: 0; background: var(--story-shade); }
 .story-copy { transform: translateY(calc(var(--story-progress) * -18px)); }
+.story-stage > div:last-child { padding-top: 100px; }
 .story-progress-track { height: 1px; background: color-mix(in oklch, var(--ink-foreground) 30%, transparent); }
 .story-progress-fill { height: 100%; width: calc(15% + var(--story-progress) * 85%); background: var(--ink-foreground); }
 @media (max-width: 767px) {
