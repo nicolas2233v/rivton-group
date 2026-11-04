@@ -8,7 +8,9 @@ const num = (v: unknown) => {
   return Number.isFinite(n) && n > 0 ? n : undefined;
 };
 
-export function parseFilters(s: Record<string, unknown>): PropertyFilters {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function parseFilters(raw: Record<string, unknown>): PropertyFilters {
+  const s = raw as any;
   const f: PropertyFilters = {};
   if (OPS.includes(s.operacion as Operation)) f.operacion = s.operacion as Operation;
   if (typeof s.ubicacion === "string" && s.ubicacion.trim()) f.ubicacion = s.ubicacion.trim();

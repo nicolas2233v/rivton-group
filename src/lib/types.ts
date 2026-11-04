@@ -16,28 +16,28 @@ export interface Property {
   type: PropertyType;
   /** null = "Precio a consultar" */
   price: { amount: number; currency: "USD" | "ARS" } | null;
-  bedrooms?: number;
-  bathrooms?: number;
-  lotArea?: number; // m² terreno
-  coveredArea?: number; // m² cubiertos
-  location?: string;
-  code?: string;
+  bedrooms?: number | undefined;
+  bathrooms?: number | undefined;
+  lotArea?: number | undefined; // m² terreno
+  coveredArea?: number | undefined; // m² cubiertos
+  location?: string | undefined;
+  code?: string | undefined;
   amenities: string[];
-  description?: string;
+  description?: string | undefined;
   images: PropertyImage[];
   featured: boolean;
-  featuredOrder?: number;
+  featuredOrder?: number | undefined;
   publishedAt: string; // ISO
-  whatsapp?: string;
-  calendlyUrl?: string;
-  coordinates?: { lat: number; lng: number };
+  whatsapp?: string | undefined;
+  calendlyUrl?: string | undefined;
+  coordinates?: { lat: number | undefined; lng: number };
 }
 
 export interface SiteSettings {
-  whatsapp?: string;
-  email?: string;
-  phone?: string;
-  address?: string;
+  whatsapp?: string | undefined;
+  email?: string | undefined;
+  phone?: string | undefined;
+  address?: string | undefined;
   socials: { label: string; url: string }[];
 }
 
@@ -48,12 +48,12 @@ export interface TeamInfo {
 }
 
 export interface PropertyFilters {
-  operacion?: Operation;
-  ubicacion?: string;
-  tipo?: PropertyType;
-  precioMax?: number;
-  dormitorios?: number;
-  banos?: number;
-  piscina?: boolean;
-  orden?: "recientes" | "precio-asc" | "precio-desc";
+  operacion?: Operation | undefined;
+  ubicacion?: string | undefined;
+  tipo?: PropertyType | undefined;
+  precioMax?: number | undefined;
+  dormitorios?: number | undefined;
+  banos?: number | undefined;
+  piscina?: boolean | undefined;
+  orden?: "recientes" | "precio-asc" | "precio-desc" | undefined;
 }
