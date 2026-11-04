@@ -15,3 +15,4 @@
 - Scroll presentation uses CSS variables updated through animation-frame scroll listeners, with reduced-motion fallbacks to keep effects lightweight and accessible.
 - Homepage reveal choreography uses a shared intersection observer; horizontally scrolling content stays inside an inset viewport so cards never touch the screen edges.
 - Opening scenes share one sticky photo stage with eased scroll progress and hold intervals; hidden scenes are inert, and the return-to-search control restores the first frame and input focus without hijacking normal scrolling.
+- Mobile scenes reserve a shared dock clearance including device safe-area insets; short screens allow the search panel to scroll within the unobscured scene area.

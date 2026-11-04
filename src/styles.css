@@ -168,6 +168,7 @@
   .story-exterior { object-position: 54% center; }
   .story-intro, .story-second, .story-third { padding: 104px 20px calc(var(--dock-clearance) + 50px); }
   .story-intro { grid-template-columns: minmax(0, 1fr); align-content: center; gap: 22px; }
+  .story-intro { bottom: calc(var(--dock-clearance) + 50px); padding-bottom: 12px; overflow-y: auto; }
   .story-intro > div { min-width: 0; }
   .story-intro h1 { font-size: 44px; }
   .story-intro-heading > p:last-child { margin-top: 10px; }

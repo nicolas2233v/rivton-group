@@ -21,6 +21,6 @@
 - [x] Verify all frames and return-to-search on mobile and desktop.
 
 ## Mobile scroll and safe areas
-- [ ] Shorten mobile scroll and add a swipe cue.
-- [ ] Keep scene buttons above the dock across small screens and device safe areas.
-- [ ] Verify iPhone XR, short mobile screens, tablet and desktop.
+- [x] Shorten mobile scroll and add a swipe cue.
+- [x] Keep scene buttons above the dock across small screens and device safe areas.
+- [x] Verify iPhone XR, short mobile screens, tablet and desktop.
