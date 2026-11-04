@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { filterProperties, formatPrice, parseFilters } from "./filters";
+import { filterProperties, formatPrice, parseFilters } from "@/lib/filters";
 import { localProperties } from "@/data/properties";
 
 describe("property search", () => {
