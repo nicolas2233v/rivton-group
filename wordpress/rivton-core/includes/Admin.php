@@ -40,14 +40,14 @@ final class Admin
         wp_enqueue_media();
         wp_enqueue_script(
             "estate-core-admin",
-            plugins_url("../assets/admin.js", __FILE__),
+            plugins_url("../assets/studio.js", __FILE__),
             [],
             ESTATE_CORE_VERSION,
             true,
         );
         wp_enqueue_style(
             "estate-core-admin",
-            plugins_url("../assets/admin.css", __FILE__),
+            plugins_url("../assets/studio.css", __FILE__),
             [],
             ESTATE_CORE_VERSION,
         );
@@ -58,6 +58,7 @@ final class Admin
         $data = [
             "api" => rest_url(Rest::NS . "/"),
             "nonce" => wp_create_nonce("wp_rest"),
+            "mediaUrl" => admin_url("upload.php"),
             "schemas" => Schema::all(),
             "defaults" => json_decode(
                 file_get_contents(ESTATE_CORE_DIR . "/schemas/defaults.json"),
@@ -68,7 +69,10 @@ final class Admin
         wp_add_inline_script(
             "estate-core-admin",
             "window.EstateCoreAdmin=" .
-                wp_json_encode($data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) .
+                wp_json_encode(
+                    Schema::json($data),
+                    JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT,
+                ) .
                 ";",
             "before",
         );
