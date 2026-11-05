@@ -138,11 +138,37 @@ final class Admin
             return $file;
         }
         $ext = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
+        // Core package installers share the upload hook with the media library.
+        // Exempt only their authenticated ZIP request; media endpoints stay restricted.
+        global $pagenow;
+        if ($pagenow === "update.php" && $ext === "zip") {
+            $packages = [
+                "upload-plugin" => ["upload_plugins", "plugin-upload", "pluginzip"],
+                "upload-theme" => ["upload_themes", "theme-upload", "themezip"],
+            ];
+            $action = isset($_GET["action"]) && is_string($_GET["action"]) ? $_GET["action"] : "";
+            $nonce =
+                isset($_REQUEST["_wpnonce"]) && is_string($_REQUEST["_wpnonce"])
+                    ? $_REQUEST["_wpnonce"]
+                    : "";
+            if (isset($packages[$action])) {
+                [$cap, $nonceAction, $field] = $packages[$action];
+                if (
+                    current_user_can($cap) &&
+                    wp_verify_nonce($nonce, $nonceAction) &&
+                    !empty($file["tmp_name"]) &&
+                    $file["tmp_name"] === ($_FILES[$field]["tmp_name"] ?? null)
+                ) {
+                    return $file;
+                }
+            }
+        }
+
         if (
             !in_array($ext, ["jpg", "jpeg", "png", "webp", "avif", "mp4"], true) ||
             $file["size"] > 10 * 1024 * 1024
         ) {
-            $file["error"] = "Only JPG, PNG, WebP, AVIF or MP4 up to 10 MB are allowed.";
+            $file["error"] = "Para fotos y videos: JPG, PNG, WebP, AVIF o MP4 de hasta 10 MB.";
         }
         // WordPress subsequently checks actual MIME/file contents and upload permissions.
         return $file;

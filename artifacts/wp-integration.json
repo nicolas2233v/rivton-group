@@ -96,7 +96,7 @@
         }
     },
     "publishedProperty": {
-        "id": "c3fec2f6-6cb1-48c9-81fd-570bc3c8e080",
+        "id": "894531fd-da98-4cee-ace1-5876a04885c8",
         "schemaVersion": 1,
         "revision": 2,
         "extensions": {},
@@ -128,7 +128,7 @@
         ],
         "featured": false,
         "publishedAt": "2026-11-04",
-        "updatedAt": "2026-11-05T01:40:58Z",
+        "updatedAt": "2026-11-05T01:51:31Z",
         "calendly": {
             "enabled": false,
             "label": "",
@@ -148,7 +148,7 @@
         "revision": "3",
         "properties": [
             {
-                "id": "c3fec2f6-6cb1-48c9-81fd-570bc3c8e080",
+                "id": "894531fd-da98-4cee-ace1-5876a04885c8",
                 "slug": "integration-fixture",
                 "title": "Integration fixture",
                 "operation": "venta",
@@ -463,7 +463,7 @@
         "assets\/admin.js": "a1fab24cff61b7568c76d5d499796ace22293b4ac5320962d475c3a5380f8041",
         "assets\/studio.css": "1d18d57cfe9f1614cb845c9e710b92f8941ab429120049446a38efa5550e472e",
         "assets\/studio.js": "5ea571da8659244bd6626f0990b063d93358cb19f2a1279a2cac2aab67efb9f6",
-        "includes\/Admin.php": "c83c88e376295a0ed1234758af38b127f827b19aa4f7ab080df691e5d1777990",
+        "includes\/Admin.php": "38ebb5de1453c1f67b2403cab360e00173dda00c6f43b137b199e78d59c98f07",
         "includes\/Domain.php": "ff90fc47510bacfb0f2a53448dd1fe5b7578bf945d3b751bfb304bed6e9c16a1",
         "includes\/Import.php": "be528b83bd982520936d4472947ac2391da3cd14fec440aa03e3d6c53a3289a5",
         "includes\/Lifecycle.php": "96c85e48850b3d695dc3d3ac941e9cff36d4e64cd74c3cbcad6d205f8c59dfcc",
@@ -479,8 +479,8 @@
         "profiles\/media\/terrace-garden.jpg": "c3b4c182b5f14c20b9bf659ea9ccdd02293bff9c18d658289d0f086b92d7b31c",
         "profiles\/rivton-intake.php": "f3742669f60f149c344cfdc63b8749b4903bb3fbaa00635d30d3be03156c1227",
         "profiles\/rivton.json": "0c3ac0aad7a7131b6dbcf2e2891f84c141dcfa6350504056f7e93b0eaa074db2",
-        "readme.txt": "17c41ef932d477f97bbfb210cef562d98d0ee98d900dd12c17f4c63584f9729b",
-        "rivton-core.php": "eebe56f7bc9bfa5cf068ecdb3831f2ab2a04d50408332693d06845a0ede9594c",
+        "readme.txt": "b8291ccf46295300b3a9614ffb65380c64649cca364161732e15e30699fb9de6",
+        "rivton-core.php": "2bb1e25564872630b800a30e40ea4658e1ea8a92a5b52c59611efa44116c5956",
         "schemas\/contracts.json": "f40478e1171c55b2f7aa1a61d71b4752887d4c91ad0cac08797556bf31106723",
         "schemas\/defaults.json": "a530e106d3328d9e45600bb480d2b779fd494611c149b2eb2ffb5cc3d0b9411d",
         "uninstall.php": "f3548c2af7fa5fe0dd1c009056727c28d40d72853544ca86a4f1094efe767350"
@@ -491,7 +491,7 @@
         "revision": "10",
         "properties": [
             {
-                "id": "159918a0-645d-4499-b196-eceb57a8d551",
+                "id": "74988a5f-f834-411a-80da-0bee6004803b",
                 "slug": "custom-type-fixture",
                 "title": "Integration fixture",
                 "operation": "venta",

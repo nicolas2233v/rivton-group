@@ -1,7 +1,7 @@
 === RIVTON Core ===
 Requires at least: 6.8
 Requires PHP: 8.1
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 License: GPLv2 or later
 
 Headless real estate administration for independent WordPress installations.

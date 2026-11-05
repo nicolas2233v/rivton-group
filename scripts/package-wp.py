@@ -3,7 +3,7 @@ from pathlib import Path
 import hashlib,zipfile
 root=Path(__file__).resolve().parent.parent
 source=root/'wordpress'/'rivton-core'
-output=root/'artifacts'/'rivton-core-0.3.0.zip'
+output=root/'artifacts'/'rivton-core-0.3.1.zip'
 output.parent.mkdir(exist_ok=True)
 with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as archive:
  for file in sorted(source.rglob('*')):

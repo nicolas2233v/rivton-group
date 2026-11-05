@@ -28,7 +28,7 @@ execFileSync(mysql, [
 unzip(path.join(native, "wordpress.zip"), fixture);
 const plugins = path.join(wp, "wp-content/plugins");
 unzip(
-  path.join(root, clean ? "artifacts/rivton-core-0.3.0.zip" : "artifacts/rivton-core-0.2.0.zip"),
+  path.join(root, clean ? "artifacts/rivton-core-0.3.1.zip" : "artifacts/rivton-core-0.2.0.zip"),
   plugins,
 );
 const passfile = path.join(native, "password.txt").replaceAll("\\", "/");
@@ -53,7 +53,7 @@ run(
   `define('WP_INSTALLING',true);require getenv('ESTATE_WP_ROOT').'/wp-load.php';require_once ABSPATH.'wp-admin/includes/upgrade.php';wp_install('RIVTON QA','qa-admin','qa@example.invalid',true,'',trim(file_get_contents('${passfile}')));require_once ABSPATH.'wp-admin/includes/plugin.php';activate_plugin('rivton-core/rivton-core.php');wp_set_current_user(1);$d=json_decode(file_get_contents(ESTATE_CORE_DIR.'/schemas/defaults.json'),true)['property'];$d['title']='Upgrade QA fixture';$d['slug']='upgrade-qa';$row=EstateCore\\Store::save('property',$d,'draft',null,'upgrade-preserved-native');if(is_wp_error($row))throw new Exception('Baseline write failed');file_put_contents(__DIR__.'/before.json',wp_json_encode($row));echo ESTATE_CORE_VERSION.' installed and record saved';`,
 );
 if (!clean) {
-  unzip(path.join(root, "artifacts/rivton-core-0.3.0.zip"), plugins);
+  unzip(path.join(root, "artifacts/rivton-core-0.3.1.zip"), plugins);
   run(
     "check-upgrade",
     `require getenv('ESTATE_WP_ROOT').'/wp-load.php';$before=json_decode(file_get_contents(__DIR__.'/before.json'),true);$after=EstateCore\\Store::get('upgrade-preserved-native');if($before['document']!==$after['document']||get_option('estate_schema_version')!=3)throw new Exception('Upgrade lost data');$result=['success'=>true,'from'=>'0.2.0','to'=>ESTATE_CORE_VERSION,'storageVersion'=>(int)get_option('estate_schema_version'),'database'=>$GLOBALS['wpdb']->get_var('SELECT VERSION()'),'preservedId'=>$after['id'],'documentUnchanged'=>true,'revisionCaptured'=>(bool)EstateCore\\Workspace::historical($after,(int)$after['revision'])];file_put_contents(getenv('ESTATE_RESULTS').'/wp-upgrade.json',wp_json_encode($result,JSON_PRETTY_PRINT));echo 'Upgrade ZIP preserves ID, content and revision';`,
@@ -61,7 +61,7 @@ if (!clean) {
 } else {
   run(
     "check-clean-install",
-    `require getenv('ESTATE_WP_ROOT').'/wp-load.php';if(ESTATE_CORE_VERSION!=='0.3.0'||get_option('estate_schema_version')!=3)throw new Exception('Clean install failed');file_put_contents(getenv('ESTATE_RESULTS').'/wp-clean-install.json',wp_json_encode(['success'=>true,'version'=>ESTATE_CORE_VERSION,'storageVersion'=>(int)get_option('estate_schema_version'),'database'=>$GLOBALS['wpdb']->get_var('SELECT VERSION()')],JSON_PRETTY_PRINT));echo 'Clean 0.3.0 ZIP activation verified';`,
+    `require getenv('ESTATE_WP_ROOT').'/wp-load.php';if(ESTATE_CORE_VERSION!=='0.3.1'||get_option('estate_schema_version')!=3)throw new Exception('Clean install failed');file_put_contents(getenv('ESTATE_RESULTS').'/wp-clean-install.json',wp_json_encode(['success'=>true,'version'=>ESTATE_CORE_VERSION,'storageVersion'=>(int)get_option('estate_schema_version'),'database'=>$GLOBALS['wpdb']->get_var('SELECT VERSION()')],JSON_PRETTY_PRINT));echo 'Clean 0.3.1 ZIP activation verified';`,
   );
 }
 const tests = path.join(root, "wordpress/tests").replaceAll("\\", "/");
