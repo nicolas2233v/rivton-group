@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "@/lib/validation";
 import { urlSchema } from "./contracts";
 import type { Property, SiteSettings, TeamInfo } from "@/lib/types";
 import { themeSettingsSchema, defaultTheme, type ThemeSettings } from "./theme";
@@ -101,7 +101,7 @@ export class MockContentRepository implements ContentRepository {
   }
   invalidate() {}
 }
-export class WordPressContentRepository implements ContentRepository {
+export class HttpContentRepository implements ContentRepository {
   private cached: { value: ContentSnapshot; expires: number } | undefined;
   private pending: Promise<ContentSnapshot> | undefined;
   private generation = 0;
@@ -181,7 +181,7 @@ export function createContentRepository(
   mock: ContentSnapshot,
 ): ContentRepository {
   if (config.provider === "mock") return new MockContentRepository(mock);
-  if (config.provider === "wordpress" && config.publicEndpoint)
-    return new WordPressContentRepository(config.publicEndpoint);
+  if (config.provider === "http" && config.publicEndpoint)
+    return new HttpContentRepository(config.publicEndpoint);
   throw new Error("Invalid content provider configuration");
 }

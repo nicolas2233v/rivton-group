@@ -1,7 +1,7 @@
-// Content model shaped to map 1:1 from a future WordPress REST API (custom post types + ACF).
+// Public projection shared by search, home, detail and favorites.
 
-export type Operation = "venta" | "alquiler";
-export type PropertyType = "casa" | "departamento" | "terreno" | "local" | "oficina";
+export type Operation = string;
+export type PropertyType = string;
 
 export interface PropertyImage {
   src: string;
@@ -13,7 +13,14 @@ export interface Property {
   slug: string;
   title: string;
   operation: Operation;
+  operationLabel?: string | undefined;
   type: PropertyType;
+  typeLabel?: string | undefined;
+  locationIds?: string[] | undefined;
+  novelty?: boolean | undefined;
+  commercialStatus?: string | undefined;
+  attributes?: Record<string,unknown> | undefined;
+  seo?: import("@/core/contracts").SEOSettings | undefined;
   /** null = "Precio a consultar" */
   price: { amount: number; currency: "USD" | "ARS" } | null;
   bedrooms?: number | undefined;

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import {
   MockContentRepository,
-  WordPressContentRepository,
+  HttpContentRepository,
   createContentRepository,
   ContentUnavailableError,
   type ContentSnapshot,
@@ -33,7 +33,7 @@ describe("content boundary", () => {
   });
   it("validates remote content, coalesces reads, and invalidates cache", async () => {
     const fetcher = vi.fn<typeof fetch>().mockImplementation(async () => response(snapshot));
-    const repo = new WordPressContentRepository("https://cms.example/snapshot", fetcher);
+    const repo = new HttpContentRepository("https://cms.example/snapshot", fetcher);
     const [a, b] = await Promise.all([repo.read(), repo.read()]);
     expect(a.properties).toEqual(b.properties);
     expect(fetcher).toHaveBeenCalledTimes(1);
@@ -55,7 +55,7 @@ describe("content boundary", () => {
       properties: [{ ...localProperties[0], images: [{ src: "javascript:alert(1)", alt: "" }] }],
     },
   ])("rejects invalid external data without a fake catalog", async (invalid) => {
-    const repo = new WordPressContentRepository(
+    const repo = new HttpContentRepository(
       "https://cms.example/snapshot",
       vi.fn<typeof fetch>().mockResolvedValue(response(invalid)),
     );
@@ -67,7 +67,7 @@ describe("content boundary", () => {
       new Response("x".repeat(2000001), { headers: { "content-type": "application/json" } }),
     ]) {
       await expect(
-        new WordPressContentRepository(
+        new HttpContentRepository(
           "https://cms.example/snapshot",
           vi.fn<typeof fetch>().mockResolvedValue(r),
         ).read(),
@@ -79,7 +79,7 @@ describe("content boundary", () => {
       .fn<typeof fetch>()
       .mockRejectedValueOnce(new Error("secret"))
       .mockImplementation(async () => response(snapshot));
-    const repo = new WordPressContentRepository("https://cms.example/snapshot", fetcher, 0);
+    const repo = new HttpContentRepository("https://cms.example/snapshot", fetcher, 0);
     await expect(repo.read()).rejects.toThrow("Content temporarily unavailable");
     await repo.read();
     await repo.read();
@@ -87,8 +87,8 @@ describe("content boundary", () => {
   });
   it("does not accept unknown providers or credentials", () => {
     expect(() => createContentRepository({ provider: "typo" }, snapshot)).toThrow();
-    expect(() => createContentRepository({ provider: "wordpress" }, snapshot)).toThrow();
-    expect(() => new WordPressContentRepository("https://user:password@cms.example")).toThrow();
+    expect(() => createContentRepository({ provider: "http" }, snapshot)).toThrow();
+    expect(() => new HttpContentRepository("https://user:password@cms.example")).toThrow();
   });
 });
 describe("configuration safety and design preservation", () => {

@@ -4,13 +4,16 @@
 //     nitro (build-only using cloudflare as a default target), VITE_* env injection, @ path alias,
 //     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
+import {loadEnv} from "vite";
+Object.assign(process.env,loadEnv(process.env["NODE_ENV"]??"development",process.cwd(),""));
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  nitro: {preset: process.env["NITRO_PRESET"]??"vercel"},
   vite: {
     server: {
       // Playwright traces contain HTML; watching them can reload the app mid-test.
-      watch: { ignored: ["**/.tmp/**"] },
+      watch: { ignored: ["**/.tmp/**","**/.vercel/**","**/.output/**","**/docs/platform/evidence/**"] },
     },
   },
   tanstackStart: {

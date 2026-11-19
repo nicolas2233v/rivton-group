@@ -35,3 +35,10 @@ dist-ssr
 
 playwright-report/
 test-results/
+
+.vercel/
+.env
+.env.*
+!.env.example
+
+supabase/.temp/

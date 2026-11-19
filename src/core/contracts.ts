@@ -1,10 +1,13 @@
-import { z } from "zod";
+import { z } from "@/lib/validation";
 
 // Versioned public DTOs. No WordPress storage details or private credentials.
 export const idSchema = z.string().min(1).max(128);
 export const urlSchema = z
   .string()
   .max(2048)
+  .regex(
+    /^(?:\/(?!\/)[^\\\x00-\x20\x7f]*|https:\/\/[^\/@\\\x00-\x20\x7f]+(?:[\/?#][^\\\x00-\x20\x7f]*)?)$/,
+  )
   .refine((value) => {
     if (/[\\\s]/.test(value) || [...value].some((char) => char.charCodeAt(0) < 32)) return false;
     if (/^\/(?!\/)/.test(value)) return true;
@@ -103,7 +106,7 @@ export const sectionTypes = [
 ] as const;
 export const pageSectionSchema = entity.extend({
   type: z.enum(sectionTypes),
-  content: z.record(text),
+  content: z.record(z.string(), text),
   design: z.object({
     variant: z.enum(["default", "dark", "glass"]),
     colorScheme: idSchema.optional(),
@@ -175,12 +178,15 @@ export const searchFilterDefinitionSchema = entity
     if (!presentations[filter.key]?.includes(filter.presentation))
       ctx.addIssue({ code: "custom", message: "Unsupported filter presentation" });
     const known: Record<string, string[]> = {
-      operacion: ["venta", "alquiler"],
-      tipo: ["casa", "departamento", "terreno", "local", "oficina"],
       moneda: ["ARS", "USD"],
       orden: ["recientes", "precio-asc", "precio-desc"],
     };
     const values = filter.options.map((o) => o.value);
+    if (
+      ["tipo", "operacion"].includes(filter.key) &&
+      values.some((v) => !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(v))
+    )
+      ctx.addIssue({ code: "custom", message: "Invalid catalog slug" });
     if (new Set(values).size !== values.length)
       ctx.addIssue({ code: "custom", message: "Duplicate filter option" });
     if (known[filter.key] && values.some((v) => !known[filter.key]?.includes(v)))
@@ -288,7 +294,7 @@ export const integrationSettingsSchema = entity.extend({
       .optional(),
   }),
   consentRequired: z.boolean(),
-  utmDefaults: z.record(z.string().max(200)),
+  utmDefaults: z.record(z.string(), z.string().max(200)),
 });
 export type SiteSettings = z.infer<typeof siteSettingsSchema>;
 export type NavigationMenu = z.infer<typeof navigationMenuSchema>;

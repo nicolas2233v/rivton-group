@@ -33,7 +33,7 @@ describe("schema-driven search compatibility", () => {
       search: { operacion: "venta", ubicacion: "Centro" },
     });
   });
-  it("rejects incompatible presentations and taxonomy values", () => {
+  it("rejects incompatible presentations and unsafe taxonomy slugs", () => {
     const type = defaultFilters.find((d) => d.key === "tipo")!;
     expect(
       searchFilterDefinitionSchema.safeParse({ ...type, presentation: "checkbox" }).success,
@@ -41,7 +41,7 @@ describe("schema-driven search compatibility", () => {
     expect(
       searchFilterDefinitionSchema.safeParse({
         ...type,
-        options: [{ value: "unregistered-type", label: "Unknown" }],
+        options: [{ value: "../invalid-type", label: "Unknown" }],
       }).success,
     ).toBe(false);
   });

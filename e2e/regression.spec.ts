@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 const hydrated = async (page: import("@playwright/test").Page) => {
+  await expect(page.locator('html[data-app-ready="true"]')).toHaveCount(1);
   await expect(
     page.getByRole("contentinfo").getByText("Luis Jos\u00e9 de Tejeda 3883 local A", { exact: true }),
   ).toBeVisible();

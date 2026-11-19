@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "@/lib/validation";
 // Keep the approved CSS values verbatim. Empty overrides have zero visual effect.
 export const tokenNames = [
   "background",
@@ -41,7 +41,7 @@ export const themeSettingsSchema = z.object({
   schemaVersion: z.literal(1),
   id: z.string().min(1),
   revision: z.number().int().nonnegative(),
-  colors: z.record(z.enum(tokenNames), color),
+  colors: z.partialRecord(z.enum(tokenNames), color),
   radius: z.number().min(0).max(3).optional(),
   contentWidth: z.number().min(960).max(1600).optional(),
   spacingScale: z.number().min(0.8).max(1.25).optional(),
@@ -59,7 +59,7 @@ export const themeSettingsSchema = z.object({
     .object({ radius: z.number().min(0).max(64), height: z.number().min(40).max(64) })
     .optional(),
   sectionColors: z
-    .record(z.string().regex(/^[a-z0-9-]+$/), z.record(z.enum(tokenNames), color))
+    .record(z.string().regex(/^[a-z0-9-]+$/), z.partialRecord(z.enum(tokenNames), color))
     .default({}),
 });
 export type ThemeSettings = z.infer<typeof themeSettingsSchema>;

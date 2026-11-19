@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 import { pageSectionSchema, type PageSection } from "./contracts";
-import { z } from "zod";
+import { z } from "@/lib/validation";
 // Components are explicitly registered by the application, never resolved from CMS code.
 export type SectionRenderer = ComponentType<{ section: PageSection }>;
 export type SectionRegistry = Partial<Record<PageSection["type"], SectionRenderer>>;

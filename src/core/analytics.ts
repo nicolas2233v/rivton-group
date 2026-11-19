@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "@/lib/validation";
 const property = z.object({ property_id: z.string().min(1) });
 export const eventPayloads = {
   page_view: z.object({
@@ -56,7 +56,7 @@ export function createAnalytics(push: (event: AnalyticsEvent) => void, consent: 
 // Browser data layer contains only the validated public envelope, never credentials.
 declare global {
   interface Window {
-    dataLayer?: AnalyticsEvent[];
+    dataLayer?: Record<string, unknown>[];
   }
 }
 export function createBrowserAnalytics(consent: () => boolean) {
