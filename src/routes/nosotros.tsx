@@ -31,6 +31,14 @@ function About() {
   const { team, settings } = Route.useLoaderData();
   const cms = usePublished();
   const about = useElement("nosotros", "about");
+  const office = useElement("nosotros", "office");
+  const officePhotos =
+    cms?.pages["nosotros"]?.elements.filter(
+      (element) =>
+        element.id.startsWith("office-photo-") &&
+        element.visible &&
+        (element.image || element.desktop.image || element.mobile.image),
+    ) ?? [];
   return (
     <>
       <section className="relative bg-ink text-ink-foreground">
@@ -69,6 +77,35 @@ function About() {
           )}
         </div>
       </section>
+      {office?.visible && officePhotos.length > 0 && (
+        <section
+          className="mx-auto max-w-7xl px-5 py-12 lg:px-8 lg:py-20"
+          aria-labelledby="office-title"
+        >
+          <h2 id="office-title" className="text-4xl lg:text-5xl">
+            <EditableText page="nosotros" id="office" field="title" fallback="Nuestra oficina" />
+          </h2>
+          <p className="mt-4 max-w-2xl text-muted-foreground">
+            <EditableText page="nosotros" id="office" field="body" fallback="" />
+          </p>
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            {officePhotos.map((photo) => (
+              <figure key={photo.id}>
+                <EditableImage
+                  page="nosotros"
+                  id={photo.id}
+                  fallback=""
+                  alt="Oficina de RIVTON Group"
+                  className="aspect-[4/3] w-full rounded-xl object-cover"
+                />
+                <figcaption className="mt-3 text-sm text-muted-foreground">
+                  <EditableText page="nosotros" id={photo.id} field="title" fallback="" />
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
       {cms?.members.length ? (
         <section className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:grid-cols-4 lg:px-8">
           {cms.members.map((m) => (

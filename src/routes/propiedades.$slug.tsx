@@ -2,7 +2,6 @@ import { propertySEO } from "@/platform/seo";
 import { usePublished, useElement } from "@/platform/content-context";
 import { track } from "@/platform/measurement";
 import { createFileRoute, Link, notFound, useRouter } from "@tanstack/react-router";
-import { useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -17,6 +16,7 @@ import {
 import { contentFromParent } from "@/services/content";
 import { formatArea, formatPrice } from "@/lib/filters";
 import { FavButton } from "@/components/property";
+import { PropertyGallery } from "@/components/property-gallery";
 
 export const Route = createFileRoute("/propiedades/$slug")({
   loader: async ({ params, parentMatchPromise }) => {
@@ -76,8 +76,6 @@ export const Route = createFileRoute("/propiedades/$slug")({
 function Detail() {
   const { p, settings } = Route.useLoaderData();
   const router = useRouter();
-  const [i, setI] = useState(0);
-  const n = p.images.length;
   const cms = usePublished();
   const contact = useElement("ficha", "contact");
   const wa = cms?.configuration?.whatsapp ?? p.whatsapp ?? settings.whatsapp;
@@ -93,7 +91,6 @@ function Detail() {
         city: p.location ?? "",
       })[key as "title"] ?? "",
   );
-  const cur = p.images[i] ?? p.images[0];
 
   const facts = [
     p.bedrooms != null && { icon: Bed, value: p.bedrooms, label: "Dormitorios" },
@@ -104,47 +101,26 @@ function Detail() {
 
   return (
     <div className="mx-auto max-w-7xl lg:px-8 lg:py-10">
-      <div className="lg:grid lg:grid-cols-[1.5fr_1fr] lg:gap-12">
-        <div className="relative aspect-[4/3] overflow-hidden bg-muted lg:rounded-2xl">
-          <img
-            src={cur?.src}
-            alt={cur?.alt}
-            width={1280}
-            height={896}
-            className="h-full w-full object-cover"
-          />
-          <button
-            onClick={() => router.history.back()}
-            aria-label="Volver"
-            className="absolute left-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-background/95"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <FavButton id={p.id} className="absolute right-4 top-4 h-10 w-10" />
-          {n > 1 && (
+      <div className="lg:grid lg:grid-cols-[1.5fr_1fr] lg:gap-x-8 lg:gap-y-6">
+        <PropertyGallery
+          key={p.id}
+          images={p.images}
+          actions={
             <>
               <button
-                aria-label="Foto anterior"
-                onClick={() => setI((i - 1 + n) % n)}
-                className="absolute left-4 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-background/80"
+                type="button"
+                onClick={() => router.history.back()}
+                aria-label="Volver"
+                className="absolute left-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-background/95"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
-              <button
-                aria-label="Foto siguiente"
-                onClick={() => setI((i + 1) % n)}
-                className="absolute right-4 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full bg-background/80"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
+              <FavButton id={p.id} className="absolute right-4 top-4 h-10 w-10" />
             </>
-          )}
-          <span className="absolute bottom-4 right-4 rounded-full bg-ink/70 px-3 py-1 text-xs text-ink-foreground">
-            {i + 1}/{n}
-          </span>
-        </div>
+          }
+        />
 
-        <div className="px-5 py-6 lg:px-0 lg:py-0">
+        <div className="px-5 py-5 lg:row-span-2 lg:px-0 lg:py-0">
           <div className="flex items-center justify-between">
             <span className="label-caps rounded-sm bg-secondary px-2 py-1 text-[10px]">
               {p.operationLabel ??
@@ -156,7 +132,7 @@ function Detail() {
             </span>
             {p.code && <span className="text-xs text-muted-foreground">Código: {p.code}</span>}
           </div>
-          <h1 className="mt-3 text-4xl lg:text-5xl">{p.title}</h1>
+          <h1 className="mt-3 text-4xl lg:text-[2.65rem] lg:leading-[1.05]">{p.title}</h1>
           {p.location && <p className="mt-1 text-sm text-muted-foreground">{p.location}</p>}
           <p className="mt-3 text-3xl font-bold tracking-tight">{formatPrice(p.price)}</p>
 
@@ -184,15 +160,6 @@ function Detail() {
                   </li>
                 ))}
               </ul>
-            </div>
-          )}
-
-          {p.description && (
-            <div className="mt-6">
-              <h2 className="text-2xl">Descripción</h2>
-              <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
-                {p.description}
-              </p>
             </div>
           )}
 
@@ -230,26 +197,15 @@ function Detail() {
             )}
           </div>
         </div>
+        {p.description && (
+          <section className="px-5 pb-8 lg:col-start-1 lg:row-start-2 lg:px-0">
+            <h2 className="text-2xl">Descripción</h2>
+            <p className="mt-3 whitespace-pre-line text-[15px] leading-relaxed text-muted-foreground">
+              {p.description}
+            </p>
+          </section>
+        )}
       </div>
-
-      {n > 1 && (
-        <div className="no-scrollbar mx-5 flex gap-2 overflow-x-auto pb-10 lg:mx-0 lg:mt-6">
-          {p.images.map((img, k) => (
-            <button
-              key={k}
-              onClick={() => setI(k)}
-              className={`h-20 w-28 shrink-0 overflow-hidden rounded-lg border-2 ${k === i ? "border-foreground" : "border-transparent"}`}
-            >
-              <img
-                src={img.src}
-                alt={img.alt}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
-            </button>
-          ))}
-        </div>
-      )}
     </div>
   );
 }
