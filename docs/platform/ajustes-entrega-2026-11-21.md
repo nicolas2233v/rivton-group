@@ -21,7 +21,9 @@ Solicitud: conservar el diseño y las interacciones de Lovable, conectar las con
 
 Las propiedades, las nuevas fotos de inmuebles y Nosotros y cualquier corrección de contacto se cargarán a partir del material real del usuario. No se sustituyen por publicaciones ni imágenes ficticias. La revisión jurídica y de proveedores sigue pendiente para la entrega comercial; la aprobación de la política fue exclusivamente para pruebas. La revisión de conservación a los 12 meses es un procedimiento manual, no una eliminación automática implementada.
 
-La evidencia remota de formularios y rendimiento se incorporará después del despliegue del commit verificado. Los tiempos de laboratorio de una sesión no son métricas de usuarios reales ni certifican Core Web Vitals.
+El commit d9600e1 se desplegó desde GitHub como Preview protegido y quedó READY. Chromium mobile verificó validación, guardado real con consentimiento, enlace de WhatsApp, campos de Publicar y política publicada. La consulta sintética se confirmó en Supabase y se retiró con auditoría; no se enviaron mensajes ni correos.
+
+En una medición puntual, DOMContentLoaded de la Home pasó de 4449 ms a 1421 ms. Contacto y Publicar mantuvieron tiempos similares con los campos ya habilitados. Ver evidence/delivery-live-forms.json y evidence/delivery-performance.json. Son mediciones de laboratorio de una sesión, no métricas de usuarios reales ni certificaciones de Core Web Vitals.
 
 
 La CLI de Git utilizaba una conexión sin permiso de escritura. El usuario reconectó GitHub con la cuenta nicolas2233v, cuyo acceso de escritura fue verificado. Los archivos se publican mediante el conector sobre la rama existente, conservando su commit padre y sin cambiar main.

@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-21",
+  "scope": "Single local Chromium session per version against the protected staging site; not field Core Web Vitals",
+  "metric": "dom = DOMContentLoadedEventEnd minus navigation start, milliseconds",
+  "before": [
+    {
+      "path": "/",
+      "status": 200,
+      "elapsed": 5454,
+      "ttfb": 50,
+      "dom": 4449,
+      "resources": 0,
+      "inputs": 1
+    },
+    {
+      "path": "/contacto",
+      "status": 200,
+      "elapsed": 1441,
+      "ttfb": 44,
+      "dom": 706,
+      "resources": 0,
+      "inputs": 0
+    },
+    {
+      "path": "/publicar",
+      "status": 200,
+      "elapsed": 1603,
+      "ttfb": 44,
+      "dom": 898,
+      "resources": 0,
+      "inputs": 0
+    }
+  ],
+  "after": [
+    {
+      "path": "/",
+      "status": 200,
+      "elapsed": 2487,
+      "ttfb": 42,
+      "dom": 1421,
+      "resources": 0,
+      "inputs": 1
+    },
+    {
+      "path": "/contacto",
+      "status": 200,
+      "elapsed": 1469,
+      "ttfb": 236,
+      "dom": 758,
+      "resources": 0,
+      "inputs": 5
+    },
+    {
+      "path": "/publicar",
+      "status": 200,
+      "elapsed": 1648,
+      "ttfb": 43,
+      "dom": 794,
+      "resources": 0,
+      "inputs": 6
+    }
+  ]
+}
