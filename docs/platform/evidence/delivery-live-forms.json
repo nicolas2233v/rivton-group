@@ -1,0 +1,25 @@
+{
+  "origin": "https://rivton-group-git-codex-rivton-platform-nicolas2233vs-projects.vercel.app",
+  "errors": [],
+  "status": 200,
+  "localValidation": true,
+  "confirmed": true,
+  "whatsapp": true,
+  "publishFields": [
+    "Nombre y apellido *",
+    "Teléfono *",
+    "Email *",
+    "Tipo de inmueble *",
+    "Operación *",
+    "Ubicación *",
+    "Comentarios",
+    "Autorizo a RIVTON Group a guardar mis datos para responder y dar seguimiento a esta consulta. Leí la política de privacidad. * (Leer política)",
+    "Sitio web"
+  ],
+  "publishSelects": 2,
+  "privacy": true,
+  "syntheticLeadConfirmedInDatabase": true,
+  "syntheticLeadRemovedWithAudit": true,
+  "emailSent": false,
+  "whatsappMessageSent": false
+}

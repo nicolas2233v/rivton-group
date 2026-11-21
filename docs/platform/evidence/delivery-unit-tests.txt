@@ -1,0 +1,9 @@
+$ vitest run
+
+ RUN  v4.1.12 C:/Users/Etranbk01/Documents/ChatGPT/rivton
+
+
+ Test Files  8 passed (8)
+      Tests  45 passed (45)
+   Start at  02:24:19
+   Duration  23.94s (transform 5.70s, setup 31.27s, import 28.74s, tests 2.72s, environment 57.18s)
