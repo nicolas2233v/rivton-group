@@ -1,0 +1,117 @@
+[
+  {
+    "device": "desktop",
+    "route": "contacto",
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "contacto",
+    "validation": true,
+    "consentUnchecked": true,
+    "fields": 5
+  },
+  {
+    "device": "desktop",
+    "route": "publicar",
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "publicar",
+    "validation": true,
+    "consentUnchecked": true,
+    "fields": 8
+  },
+  {
+    "publishColumns": true,
+    "photoHeight": 372.28125
+  },
+  {
+    "device": "desktop",
+    "route": "nosotros",
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "propiedades/casa-premium-amoblada-en-jardin-claret",
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "rapidClicks": 19,
+    "photoCount": 22,
+    "selected": 20,
+    "imageLoaded": true
+  },
+  {
+    "device": "desktop",
+    "header": {
+      "wide": 1280,
+      "compact": 960
+    },
+    "footerLinks": true,
+    "pageErrors": []
+  },
+  {
+    "device": "mobile",
+    "route": "contacto",
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "contacto",
+    "validation": true,
+    "consentUnchecked": true,
+    "fields": 5
+  },
+  {
+    "device": "mobile",
+    "route": "publicar",
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "publicar",
+    "validation": true,
+    "consentUnchecked": true,
+    "fields": 8
+  },
+  {
+    "device": "mobile",
+    "route": "nosotros",
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "propiedades/casa-premium-amoblada-en-jardin-claret",
+    "status": 200,
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "rapidClicks": 19,
+    "photoCount": 22,
+    "selected": 20,
+    "imageLoaded": true
+  },
+  {
+    "mobileSwipe": true
+  },
+  {
+    "device": "mobile",
+    "header": {
+      "wide": 358,
+      "compact": 358
+    },
+    "footerLinks": true,
+    "pageErrors": []
+  }
+]

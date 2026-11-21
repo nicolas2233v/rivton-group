@@ -32,3 +32,14 @@ A pedido del usuario se revisaron también ambas páginas en desktop. Publicar a
 La grilla compartida del formulario se aplica solo dentro de inquiry-form: dos columnas desde 640 px, mensaje y consentimiento de ancho completo y una columna en pantallas pequeñas. Los campos vacíos del fallback local se normalizan a strings para mostrar validaciones en castellano. No se cambian las respuestas ni la persistencia de formularios reales.
 
 Verificación final de navegador local: 23 pruebas aprobadas y un caso táctil de desktop omitido en la ejecución conjunta de gallery-navigation e inquiry-layout, sin resultados inesperados ni flaky. Incluye las cuatro resoluciones, validación de formularios sin enviar datos, geometría desktop, swipe, teclado, clics rápidos, header, footer, visibilidad de escenas y retorno del foco al buscador. Las capturas visuales antiguas fallan por los cambios visuales expresamente solicitados del header; no se ocultó ese resultado ni se sobrescribieron sus baselines.
+## Verificación final del preview protegido
+
+Commit de aplicación ce5c809e48297a5afefbda93acc5f61bfbc3b464; despliegue dpl_Hfrm5cVWnpmrs8W2ai3yrZ2SPJAF, READY, target staging. URL: https://rivton-group-git-codex-rivton-platform-nicolas2233vs-projects.vercel.app. No se promovió a producción ni se modificó main.
+
+Chromium sin sesión administrativa verificó Contacto, Publicar, Nosotros y Jardín Claret en desktop 1440×1000 y mobile 390×844: HTTP 200, sin overflow horizontal y sin errores JavaScript. Se inspeccionaron las capturas de los formularios y la galería de oficina. Publicar mantiene imagen de altura acotada (372 px en desktop) a la izquierda del formulario; Contacto muestra fachada, email, dirección, horarios y WhatsApp.
+
+En el catálogo real de 22 fotos se ejecutaron 19 clics rápidos: índice 20 correctamente seleccionado e imagen efectivamente cargada, en ambas resoluciones. Swipe táctil confirmado en mobile. El header desktop pasó de 1280 a 960 px; mobile conservó sus 358 px y cambió de estado al desplazarse. Se confirmaron los destinos exactos de Instagram de RIVTON, WhatsApp 5493513437509 y Tempo Hogar. Los tres elementos de fotografías de la oficina están publicados en Nosotros.
+
+En los dos formularios reales se verificaron los campos, consentimiento inicialmente desmarcado y errores accesibles al enviar vacío. No se generaron consultas, mensajes ni correos durante esta verificación. El envío persistente ya probado en la entrega anterior no fue alterado por este ajuste visual. Evidencia: evidence/refined-pages-live-2026-11-21.json.
+
+Comprobaciones finales repetidas: tipado y compilación aprobados; 45 pruebas unitarias aprobadas en 8 archivos. La ejecución de navegador local final tuvo 23 aprobadas, una omitida y cero inesperadas.
