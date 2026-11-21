@@ -1,0 +1,94 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "title": "Inicio — RIVTON Group",
+    "headings": [
+      "Encontrá\ntu propiedad."
+    ],
+    "images": [
+      "/api/media/b2a7a7a7-e31e-4a31-9758-08516c3ae77b",
+      "/api/media/83cb6236-4ca4-4196-9ad4-4735a183be2c",
+      "/api/media/b2a7a7a7-e31e-4a31-9758-08516c3ae77b",
+      "/api/media/83cb6236-4ca4-4196-9ad4-4735a183be2c",
+      "/media/architecture-strip.jpg",
+      "/api/media/0ea4bdd5-2d5c-412f-a7f7-e35ceb743340"
+    ],
+    "robots": "noindex,follow"
+  },
+  {
+    "path": "/nosotros",
+    "status": 200,
+    "title": "Nosotros — RIVTON Group",
+    "headings": [
+      "Conocé RIVTON Group."
+    ],
+    "images": [],
+    "robots": "noindex,follow"
+  },
+  {
+    "path": "/propiedades",
+    "status": 200,
+    "title": "Propiedades — RIVTON Group",
+    "headings": [
+      "Propiedades"
+    ],
+    "images": [],
+    "robots": "noindex,follow"
+  },
+  {
+    "path": "/propiedades/casa-premium-amoblada-en-jardin-claret",
+    "status": 200,
+    "title": "Casa premium amoblada en Jardín Claret | RIVTON Group",
+    "headings": [
+      "Casa premium amoblada en Jardín Claret"
+    ],
+    "images": [],
+    "robots": "noindex,follow"
+  },
+  {
+    "path": "/propiedades/casa-con-pileta-y-quincho-en-cordoba-capital",
+    "status": 200,
+    "title": "Casa con pileta y quincho en Córdoba Capital | RIVTON Group",
+    "headings": [
+      "Casa con pileta y quincho en Córdoba Capital"
+    ],
+    "images": [
+      "/api/media/6c3ab352-33b1-4c73-ab66-1f58430a08aa",
+      "/api/media/5bd70c8f-b53c-4bb0-97f3-daabc90df090",
+      "/api/media/a2df7277-43f7-43c4-b529-dc1803fb08e6",
+      "/api/media/200b13a2-5e7d-4ffb-be7f-757d446187a9",
+      "/api/media/7a399d2a-cc2b-4cdf-a943-1aeb2a8f8fdc",
+      "/api/media/c4021e7b-9287-4d4f-9c47-8c207533b7b1"
+    ],
+    "robots": "noindex,follow"
+  },
+  {
+    "unassignedPrivateStatus": 404
+  },
+  {
+    "path": "/nosotros",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "path": "/propiedades",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "path": "/propiedades/casa-premium-amoblada-en-jardin-claret",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "path": "/propiedades/casa-con-pileta-y-quincho-en-cordoba-capital",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "faviconStatus": 200,
+    "faviconContentType": "image/webp",
+    "pageErrors": []
+  }
+]
