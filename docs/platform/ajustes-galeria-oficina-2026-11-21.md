@@ -25,3 +25,10 @@ Alcance solicitado por el usuario: galería táctil estable, miniaturas bajo la 
 - Las capturas anteriores de regresión visual no se regeneran automáticamente: footer, header, ficha y galería son cambios visuales pedidos expresamente. La coreografía de escenas de Inicio no se modifica.
 
 La comprobación sobre el despliegue protegido con el catálogo y las fotos reales se registra por separado tras publicar este commit. No se declara QA completa, compatibilidad universal ni aprobación de producción.
+## Ampliación: Contacto y Publicar
+
+A pedido del usuario se revisaron también ambas páginas en desktop. Publicar ahora tiene una columna editorial con la imagen existente de proporción controlada y un formulario en tarjeta a su lado; se evita colocar picture con display:contents como elemento directo de la grilla, que dejaba media pantalla vacía. Contacto presenta el formulario en tarjeta y la foto real de la fachada, dirección, horarios y canales de atención en un panel separado. Se respetan los textos publicados, campos, destinos, consentimiento y envío existentes.
+
+La grilla compartida del formulario se aplica solo dentro de inquiry-form: dos columnas desde 640 px, mensaje y consentimiento de ancho completo y una columna en pantallas pequeñas. Los campos vacíos del fallback local se normalizan a strings para mostrar validaciones en castellano. No se cambian las respuestas ni la persistencia de formularios reales.
+
+Verificación final de navegador local: 23 pruebas aprobadas y un caso táctil de desktop omitido en la ejecución conjunta de gallery-navigation e inquiry-layout, sin resultados inesperados ni flaky. Incluye las cuatro resoluciones, validación de formularios sin enviar datos, geometría desktop, swipe, teclado, clics rápidos, header, footer, visibilidad de escenas y retorno del foco al buscador. Las capturas visuales antiguas fallan por los cambios visuales expresamente solicitados del header; no se ocultó ese resultado ni se sobrescribieron sus baselines.

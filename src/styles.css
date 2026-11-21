@@ -264,3 +264,13 @@
 .max-w-7xl { max-width: var(--rivton-content-width, 80rem); }
 [data-custom-buttons="true"] .rivton-button { border-radius: var(--rivton-button-radius); height: var(--rivton-button-height); }
 .site-header [aria-label="RIVTON Group"] { color: inherit; }
+
+/* Shared layout only: field definitions, validation and submission remain in the managed form. */
+.inquiry-form > form { display: grid; gap: 18px; }
+.inquiry-form > form > * { margin-block: 0; min-width: 0; }
+@media (min-width: 640px) {
+  .inquiry-form > form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .inquiry-form > form > [data-form-wide="true"], .inquiry-form > form > button,
+  .inquiry-form > form > p, .inquiry-form > form > [role="status"] { grid-column: 1 / -1; }
+  .contact-inquiry > form > [data-form-field="name"], .contact-inquiry > form > [data-form-field="nombre"] { grid-column: 1 / -1; }
+}

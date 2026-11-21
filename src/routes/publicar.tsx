@@ -1,7 +1,6 @@
 import { EditableImage, EditableText } from "@/platform/editable";
 import { pageSEO } from "@/platform/seo";
 import { createFileRoute } from "@tanstack/react-router";
-import { PageTitle } from "@/components/site";
 import { LeadForm } from "@/components/lead-form";
 import strip from "@/assets/architecture-strip.jpg";
 
@@ -28,27 +27,40 @@ export const Route = createFileRoute("/publicar")({
 
 function Publish() {
   return (
-    <div className="lg:grid lg:grid-cols-2">
-      <div>
-        <PageTitle
-          eyebrow="Propietarios"
-          title={
+    <div className="mx-auto max-w-7xl px-5 py-8 lg:px-8 lg:py-12">
+      <div className="grid items-start gap-8 lg:grid-cols-[.85fr_1.15fr] lg:gap-12">
+        <section className="min-w-0">
+          <p className="label-caps mb-4 text-muted-foreground">Propietarios</p>
+          <h1 className="max-w-lg text-4xl leading-[1.05] lg:text-5xl">
             <EditableText
               page="publicar"
               id="heading"
               field="title"
               fallback="Publicá tu propiedad."
             />
-          }
+          </h1>
+          <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-muted-foreground">
+            <EditableText
+              page="publicar"
+              id="heading"
+              field="body"
+              fallback="Te acompañamos para que tu inmueble llegue a las personas indicadas, con la experiencia y el respaldo de RIVTON Group."
+            />
+          </p>
+          <div className="mt-7 hidden overflow-hidden rounded-2xl md:block">
+            <EditableImage
+              page="publicar"
+              id="heading"
+              fallback={strip}
+              alt="Arquitectura contemporánea"
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </div>
+        </section>
+        <section
+          aria-label="Solicitud de publicación"
+          className="inquiry-form min-w-0 rounded-2xl border bg-card p-5 shadow-sm sm:p-7 lg:p-8"
         >
-          <EditableText
-            page="publicar"
-            id="heading"
-            field="body"
-            fallback="Te acompañamos para que tu inmueble llegue a las personas indicadas, con la experiencia y el respaldo de RIVTON Group."
-          />
-        </PageTitle>
-        <div className="mx-auto max-w-7xl px-5 pb-16 lg:px-8">
           <LeadForm
             purpose="publicar"
             submitLabel="Enviar solicitud"
@@ -74,15 +86,8 @@ function Publish() {
               { name: "mensaje", label: "Comentarios", type: "textarea" },
             ]}
           />
-        </div>
+        </section>
       </div>
-      <EditableImage
-        page="publicar"
-        id="heading"
-        fallback={strip}
-        alt="Arquitectura contemporánea"
-        className="hidden h-full w-full object-cover lg:block"
-      />
     </div>
   );
 }

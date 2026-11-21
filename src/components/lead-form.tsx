@@ -48,7 +48,9 @@ function LegacyLeadForm({
       noValidate
       onSubmit={(e) => {
         e.preventDefault();
-        const r = schema.safeParse(values);
+        const r = schema.safeParse(
+          Object.fromEntries(fields.map((field) => [field.name, values[field.name] ?? ""])),
+        );
         if (!r.success) {
           setErrors(Object.fromEntries(r.error.issues.map((i) => [String(i.path[0]), i.message])));
           setDone(false);
@@ -60,7 +62,7 @@ function LegacyLeadForm({
       className="space-y-3"
     >
       {fields.map((f) => (
-        <div key={f.name}>
+        <div key={f.name} data-form-field={f.name} data-form-wide={f.type === "textarea"}>
           <label className="mb-1 block text-xs font-medium text-muted-foreground" htmlFor={f.name}>
             {f.label}
             {f.required && " *"}

@@ -187,7 +187,11 @@ export function ManagedForm({
           </label>
         );
         return (
-          <div key={field.id}>
+          <div
+            key={field.id}
+            data-form-field={field.id}
+            data-form-wide={field.type === "textarea" || checkbox}
+          >
             {checkbox ? (
               <div className="flex items-start gap-2">
                 {control}
