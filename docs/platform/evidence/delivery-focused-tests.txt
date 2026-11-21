@@ -1,0 +1,9 @@
+$ vitest run src/test/managed-form.test.tsx src/test/public-loading.test.ts
+
+ RUN  v4.1.12 C:/Users/Etranbk01/Documents/ChatGPT/rivton
+
+
+ Test Files  2 passed (2)
+      Tests  5 passed (5)
+   Start at  02:37:45
+   Duration  7.85s (transform 670ms, setup 3.92s, import 1.99s, tests 416ms, environment 6.19s)

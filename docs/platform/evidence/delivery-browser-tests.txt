@@ -1,0 +1,141 @@
+$ playwright test
+
+Running 68 tests using 1 worker
+
+(node:23448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   1 [desktop] › e2e\platform.spec.ts:2:1 › admin shows a private login and no management data without a session (25.1s)
+(node:28556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  2 [desktop] › e2e\platform.spec.ts:12:1 › private preview refuses an anonymous request (298ms)
+  ok  3 [desktop] › e2e\platform.spec.ts:18:1 › cross-origin media request is rejected before storage (3.7s)
+  ok  4 [desktop] › e2e\platform.spec.ts:26:1 › staging robots blocks crawling (148ms)
+  ok  5 [desktop] › e2e\regression.spec.ts:19:3 › approved layout / (17.6s)
+  ok  6 [desktop] › e2e\regression.spec.ts:19:3 › approved layout /propiedades (6.5s)
+  ok  7 [desktop] › e2e\regression.spec.ts:19:3 › approved layout /propiedades/jardin-claret (4.7s)
+  ok  8 [desktop] › e2e\regression.spec.ts:19:3 › approved layout /nosotros (5.8s)
+  ok  9 [desktop] › e2e\regression.spec.ts:19:3 › approved layout /contacto (5.0s)
+  ok 10 [desktop] › e2e\regression.spec.ts:19:3 › approved layout /publicar (4.1s)
+  ok 11 [desktop] › e2e\regression.spec.ts:19:3 › approved layout /favoritos (2.6s)
+  ok 12 [desktop] › e2e\regression.spec.ts:19:3 › approved layout /no-existe (2.8s)
+  ok 13 [desktop] › e2e\regression.spec.ts:42:1 › search, URL, detail, gallery and favorites (7.1s)
+  -  14 [desktop] › e2e\regression.spec.ts:57:1 › mobile navigation and local form validation
+  ok 15 [desktop] › e2e\regression.spec.ts:71:1 › search selects preserve accessible controls and URL submit (5.2s)
+  ok 16 [desktop] › e2e\regression.spec.ts:80:1 › reduced motion keeps the search and hides later scenes (4.1s)
+  ok 17 [desktop] › e2e\regression.spec.ts:88:1 › opening story scenes and return to search (10.8s)
+(node:23320) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 18 [mobile] › e2e\platform.spec.ts:2:1 › admin shows a private login and no management data without a session (3.6s)
+  ok 19 [mobile] › e2e\platform.spec.ts:12:1 › private preview refuses an anonymous request (139ms)
+  ok 20 [mobile] › e2e\platform.spec.ts:18:1 › cross-origin media request is rejected before storage (68ms)
+  ok 21 [mobile] › e2e\platform.spec.ts:26:1 › staging robots blocks crawling (61ms)
+  ok 22 [mobile] › e2e\regression.spec.ts:19:3 › approved layout / (8.6s)
+  ok 23 [mobile] › e2e\regression.spec.ts:19:3 › approved layout /propiedades (7.3s)
+  ok 24 [mobile] › e2e\regression.spec.ts:19:3 › approved layout /propiedades/jardin-claret (4.0s)
+  ok 25 [mobile] › e2e\regression.spec.ts:19:3 › approved layout /nosotros (3.4s)
+  ok 26 [mobile] › e2e\regression.spec.ts:19:3 › approved layout /contacto (4.5s)
+  ok 27 [mobile] › e2e\regression.spec.ts:19:3 › approved layout /publicar (6.5s)
+  ok 28 [mobile] › e2e\regression.spec.ts:19:3 › approved layout /favoritos (3.1s)
+  ok 29 [mobile] › e2e\regression.spec.ts:19:3 › approved layout /no-existe (3.1s)
+  ok 30 [mobile] › e2e\regression.spec.ts:42:1 › search, URL, detail, gallery and favorites (5.7s)
+  ok 31 [mobile] › e2e\regression.spec.ts:57:1 › mobile navigation and local form validation (5.6s)
+  ok 32 [mobile] › e2e\regression.spec.ts:71:1 › search selects preserve accessible controls and URL submit (19.3s)
+  x  33 [mobile] › e2e\regression.spec.ts:80:1 › reduced motion keeps the search and hides later scenes (15.9s)
+(node:5412) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 34 [mobile] › e2e\regression.spec.ts:88:1 › opening story scenes and return to search (19.6s)
+(node:11772) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 35 [short-mobile] › e2e\platform.spec.ts:2:1 › admin shows a private login and no management data without a session (4.9s)
+  ok 36 [short-mobile] › e2e\platform.spec.ts:12:1 › private preview refuses an anonymous request (161ms)
+  ok 37 [short-mobile] › e2e\platform.spec.ts:18:1 › cross-origin media request is rejected before storage (76ms)
+  ok 38 [short-mobile] › e2e\platform.spec.ts:26:1 › staging robots blocks crawling (58ms)
+  ok 39 [short-mobile] › e2e\regression.spec.ts:19:3 › approved layout / (8.4s)
+  ok 40 [short-mobile] › e2e\regression.spec.ts:19:3 › approved layout /propiedades (5.6s)
+  ok 41 [short-mobile] › e2e\regression.spec.ts:19:3 › approved layout /propiedades/jardin-claret (3.0s)
+  ok 42 [short-mobile] › e2e\regression.spec.ts:19:3 › approved layout /nosotros (3.1s)
+  ok 43 [short-mobile] › e2e\regression.spec.ts:19:3 › approved layout /contacto (2.3s)
+  ok 44 [short-mobile] › e2e\regression.spec.ts:19:3 › approved layout /publicar (3.2s)
+  ok 45 [short-mobile] › e2e\regression.spec.ts:19:3 › approved layout /favoritos (2.4s)
+  ok 46 [short-mobile] › e2e\regression.spec.ts:19:3 › approved layout /no-existe (2.2s)
+  ok 47 [short-mobile] › e2e\regression.spec.ts:42:1 › search, URL, detail, gallery and favorites (4.9s)
+  ok 48 [short-mobile] › e2e\regression.spec.ts:57:1 › mobile navigation and local form validation (14.4s)
+  ok 49 [short-mobile] › e2e\regression.spec.ts:71:1 › search selects preserve accessible controls and URL submit (6.5s)
+  ok 50 [short-mobile] › e2e\regression.spec.ts:80:1 › reduced motion keeps the search and hides later scenes (4.0s)
+  ok 51 [short-mobile] › e2e\regression.spec.ts:88:1 › opening story scenes and return to search (6.2s)
+(node:9780) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 52 [landscape] › e2e\platform.spec.ts:2:1 › admin shows a private login and no management data without a session (3.8s)
+  ok 53 [landscape] › e2e\platform.spec.ts:12:1 › private preview refuses an anonymous request (135ms)
+  ok 54 [landscape] › e2e\platform.spec.ts:18:1 › cross-origin media request is rejected before storage (68ms)
+  ok 55 [landscape] › e2e\platform.spec.ts:26:1 › staging robots blocks crawling (41ms)
+  ok 56 [landscape] › e2e\regression.spec.ts:19:3 › approved layout / (4.2s)
+  ok 57 [landscape] › e2e\regression.spec.ts:19:3 › approved layout /propiedades (2.5s)
+  ok 58 [landscape] › e2e\regression.spec.ts:19:3 › approved layout /propiedades/jardin-claret (2.4s)
+  ok 59 [landscape] › e2e\regression.spec.ts:19:3 › approved layout /nosotros (2.0s)
+  ok 60 [landscape] › e2e\regression.spec.ts:19:3 › approved layout /contacto (2.3s)
+  ok 61 [landscape] › e2e\regression.spec.ts:19:3 › approved layout /publicar (2.1s)
+  ok 62 [landscape] › e2e\regression.spec.ts:19:3 › approved layout /favoritos (1.9s)
+  ok 63 [landscape] › e2e\regression.spec.ts:19:3 › approved layout /no-existe (1.4s)
+  ok 64 [landscape] › e2e\regression.spec.ts:42:1 › search, URL, detail, gallery and favorites (4.6s)
+  ok 65 [landscape] › e2e\regression.spec.ts:57:1 › mobile navigation and local form validation (4.0s)
+  ok 66 [landscape] › e2e\regression.spec.ts:71:1 › search selects preserve accessible controls and URL submit (5.3s)
+  ok 67 [landscape] › e2e\regression.spec.ts:80:1 › reduced motion keeps the search and hides later scenes (2.8s)
+  ok 68 [landscape] › e2e\regression.spec.ts:88:1 › opening story scenes and return to search (5.7s)
+
+
+  1) [desktop] › e2e\platform.spec.ts:2:1 › admin shows a private login and no management data without a session
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('html[data-app-ready="true"]')
+    Expected: 1
+    Received: 0
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('html[data-app-ready="true"]') with timeout 10000ms
+      - waiting for locator('html[data-app-ready="true"]')
+        21 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      2 | test("admin shows a private login and no management data without a session", async ({ page }) => {
+      3 |   await page.goto("/admin");
+    > 4 |   await expect(page.locator('html[data-app-ready="true"]')).toHaveCount(1);
+        |                                                             ^
+      5 |   await expect(page.getByRole("heading", { name: "Bienvenido." })).toBeVisible();
+      6 |   await expect(page.getByLabel("Email", { exact: true })).toBeVisible();
+      7 |   await expect(page.getByRole("button", { name: "+ Nueva propiedad" })).toHaveCount(0);
+        at C:\Users\Etranbk01\Documents\ChatGPT\rivton\e2e\platform.spec.ts:4:61
+
+    Error Context: .tmp\playwright-artifacts\platform-admin-shows-a-pri-eab1c-ment-data-without-a-session-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .tmp\playwright-artifacts\platform-admin-shows-a-pri-eab1c-ment-data-without-a-session-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .tmp\playwright-artifacts\platform-admin-shows-a-pri-eab1c-ment-data-without-a-session-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › e2e\regression.spec.ts:80:1 › reduced motion keeps the search and hides later scenes
+
+    Error: browserContext.close: UNKNOWN: unknown error, open 'C:\Users\Etranbk01\Documents\ChatGPT\rivton\.tmp\playwright-artifacts\.playwright-artifacts-2\traces\9dc370239c4a30f174fb-43a6b2369c976c80306e-recording27.trace'
+
+    Error Context: .tmp\playwright-artifacts\regression-reduced-motion--87044-arch-and-hides-later-scenes-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .tmp\playwright-artifacts\regression-reduced-motion--87044-arch-and-hides-later-scenes-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .tmp\playwright-artifacts\regression-reduced-motion--87044-arch-and-hides-later-scenes-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › e2e\platform.spec.ts:2:1 › admin shows a private login and no management data without a session
+    [mobile] › e2e\regression.spec.ts:80:1 › reduced motion keeps the search and hides later scenes
+  1 skipped
+  65 passed (6.4m)
+error: script "test:e2e" exited with code 1

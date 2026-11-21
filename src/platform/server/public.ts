@@ -2,7 +2,8 @@ import { z } from "@/lib/validation";
 import { setResponseHeader, getRequest } from "@tanstack/react-start/server";
 import type { PublicSnapshot } from "../public-content";
 import {
-  schemas,suggestSEO,
+  schemas,
+  suggestSEO,
   propertyDraftSchema,
   pageSchema,
   settingsSchema,
@@ -124,8 +125,10 @@ async function loadPublic(): Promise<PublicSnapshot> {
         publishedAt: row.published_at.slice(0, 10),
         typeLabel: type.label,
         seo: {
-          title: p.seo.manual?p.seo.title:(p.seo.title||suggestSEO(p).title),
-          description: p.seo.manual?p.seo.description:(p.seo.description||suggestSEO(p).description),
+          title: p.seo.manual ? p.seo.title : p.seo.title || suggestSEO(p).title,
+          description: p.seo.manual
+            ? p.seo.description
+            : p.seo.description || suggestSEO(p).description,
           index: p.seo.index,
           follow: true,
           openGraph: {
@@ -152,12 +155,19 @@ async function loadPublic(): Promise<PublicSnapshot> {
             ...f,
             options: catalogs
               .filter((c) => c.kind === "operation" && c.definition.filterVisible !== false)
-              .map((c) => ({ value: c.slug, label: c.label })),
+              .map((c) => ({
+                value: c.slug,
+                label:
+                  c.slug === "venta" && c.label === "Venta"
+                    ? "Comprar"
+                    : c.slug === "alquiler" && c.label === "Alquiler"
+                      ? "Alquilar"
+                      : c.label,
+              })),
           }
         : f.key === "caracteristicas"
           ? {
               ...f,
-              visible: true,
               options: catalogs
                 .filter(
                   (c) =>

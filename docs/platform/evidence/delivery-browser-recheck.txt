@@ -1,0 +1,22 @@
+$ playwright test --grep "admin shows a private login|reduced motion keeps" --trace off
+
+Running 8 tests using 1 worker
+
+(node:29888) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › e2e\platform.spec.ts:2:1 › admin shows a private login and no management data without a session (3.9s)
+  ok 2 [desktop] › e2e\regression.spec.ts:80:1 › reduced motion keeps the search and hides later scenes (1.6s)
+(node:30260) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [mobile] › e2e\platform.spec.ts:2:1 › admin shows a private login and no management data without a session (2.6s)
+  ok 4 [mobile] › e2e\regression.spec.ts:80:1 › reduced motion keeps the search and hides later scenes (2.4s)
+(node:4704) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 5 [short-mobile] › e2e\platform.spec.ts:2:1 › admin shows a private login and no management data without a session (2.2s)
+  ok 6 [short-mobile] › e2e\regression.spec.ts:80:1 › reduced motion keeps the search and hides later scenes (2.3s)
+(node:21056) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 7 [landscape] › e2e\platform.spec.ts:2:1 › admin shows a private login and no management data without a session (2.0s)
+  ok 8 [landscape] › e2e\regression.spec.ts:80:1 › reduced motion keeps the search and hides later scenes (1.6s)
+
+  8 passed (24.6s)

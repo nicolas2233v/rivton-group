@@ -5,7 +5,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MapPin, MessageCircle } from "lucide-react";
 import { PageTitle } from "@/components/site";
 import { LeadForm } from "@/components/lead-form";
-import { getSettings } from "@/services/content";
+import { loadSiteSettings } from "@/services/content";
 
 export const Route = createFileRoute("/contacto")({
   validateSearch: (s: Record<string, unknown>): { propiedad?: string } =>
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/contacto")({
         { name: "twitter:card", content: "summary_large_image" },
       ],
     },
-  loader: () => getSettings(),
+  loader: loadSiteSettings,
   component: Contact,
 });
 

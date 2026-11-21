@@ -14,15 +14,16 @@ import {
   MessageCircle,
   Check,
 } from "lucide-react";
-import { getPropertyBySlug, getSettings } from "@/services/content";
+import { contentFromParent } from "@/services/content";
 import { formatArea, formatPrice } from "@/lib/filters";
 import { FavButton } from "@/components/property";
 
 export const Route = createFileRoute("/propiedades/$slug")({
-  loader: async ({ params }) => {
-    const p = await getPropertyBySlug(params.slug);
+  loader: async ({ params, parentMatchPromise }) => {
+    const snapshot = await contentFromParent(parentMatchPromise);
+    const p = snapshot.properties.find((p) => p.slug === params.slug);
     if (!p) throw notFound();
-    return { p, settings: await getSettings() };
+    return { p, settings: snapshot.settings };
   },
   head: ({ loaderData, matches }) =>
     propertySEO(matches, loaderData?.p) ?? {

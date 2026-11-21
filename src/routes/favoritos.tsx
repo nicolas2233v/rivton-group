@@ -2,7 +2,7 @@ import { EditableText } from "@/platform/editable";
 import { pageSEO } from "@/platform/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Heart } from "lucide-react";
-import { getProperties } from "@/services/content";
+import { loadPropertyList } from "@/services/content";
 import { useFavorites } from "@/hooks/use-favorites";
 import { PropertyCard } from "@/components/property";
 import { PageTitle } from "@/components/site";
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/favoritos")({
         { name: "twitter:card", content: "summary_large_image" },
       ],
     },
-  loader: () => getProperties(),
+  loader: loadPropertyList,
   component: Favorites,
 });
 

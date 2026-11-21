@@ -6,7 +6,7 @@ import { Home, Building2, Trees, Waves, KeyRound, ExternalLink, ArrowRight } fro
 import strip from "@/assets/architecture-strip.jpg";
 import { PropertyCard, PropertyRow } from "@/components/property";
 import { TEMPORARIOS_URL } from "@/components/site";
-import { getFeatured, getLatest, getTeam } from "@/services/content";
+import { loadHomeContent } from "@/services/content";
 import { ScrollStory } from "@/components/scroll-story";
 import { ScrollEffects } from "@/components/scroll-effects";
 
@@ -29,11 +29,7 @@ export const Route = createFileRoute("/")({
         { name: "twitter:card", content: "summary_large_image" },
       ],
     },
-  loader: async () => ({
-    featured: await getFeatured(),
-    latest: await getLatest(4),
-    team: await getTeam(),
-  }),
+  loader: loadHomeContent,
   component: Index,
 });
 

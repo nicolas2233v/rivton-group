@@ -5,7 +5,7 @@ import { useState } from "react";
 import { X, List, Map as MapIcon, SlidersHorizontal } from "lucide-react";
 import { filterProperties, parseFilters, TYPE_LABEL } from "@/lib/filters";
 import type { PropertyFilters } from "@/lib/types";
-import { getProperties } from "@/services/content";
+import { loadPropertyList } from "@/services/content";
 import { PropertyCard } from "@/components/property";
 import { SearchForm } from "@/components/search-form";
 import { useFilterDefinitions } from "@/core/filter-context";
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/propiedades/")({
         { name: "twitter:card", content: "summary_large_image" },
       ],
     },
-  loader: () => getProperties(),
+  loader: loadPropertyList,
   component: Results,
 });
 

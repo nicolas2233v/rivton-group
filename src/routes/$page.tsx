@@ -1,9 +1,9 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { getContent } from "@/services/content";
+import { contentFromParent } from "@/services/content";
 import { pageSEO } from "@/platform/seo";
 export const Route = createFileRoute("/$page")({
-  loader: async ({ params }) => {
-    const snapshot = await getContent();
+  loader: async ({ params, parentMatchPromise }) => {
+    const snapshot = await contentFromParent(parentMatchPromise);
     const page = snapshot.pages[params.page];
     if (!page || params.page === "ficha") throw notFound();
     return page;

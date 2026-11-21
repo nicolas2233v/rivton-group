@@ -3,7 +3,7 @@ import { useElement, usePublished } from "@/platform/content-context";
 import { pageSEO } from "@/platform/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, MapPin } from "lucide-react";
-import { getSettings, getTeam } from "@/services/content";
+import { loadAboutContent } from "@/services/content";
 
 export const Route = createFileRoute("/nosotros")({
   head: ({ matches }) =>
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/nosotros")({
         { name: "twitter:card", content: "summary_large_image" },
       ],
     },
-  loader: async () => ({ team: await getTeam(), settings: await getSettings() }),
+  loader: loadAboutContent,
   component: About,
 });
 
